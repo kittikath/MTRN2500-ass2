@@ -21,7 +21,7 @@ Camera::Camera() {
 
   gradual_transitions = true;
   current_vertical_rotation = 0.0;
-  fix_to_point = false;
+  fix_to_point = false; 
   
   viewmode = VIEW_FREE;
 

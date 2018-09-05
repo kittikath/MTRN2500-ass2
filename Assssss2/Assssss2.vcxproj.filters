@@ -60,6 +60,18 @@
     <ClCompile Include="Vehicle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TriPrism.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrapPrism.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyVehicle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cylinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RecPrism.h">
@@ -102,6 +114,18 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Vehicle.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrapPrism.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TriPrism.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVehicle.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cylinder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

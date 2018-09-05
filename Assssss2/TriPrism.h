@@ -1,30 +1,30 @@
 ﻿#ifndef TRIPRISM_H
 #define TRIPRISM_H
-#endif TRIPRISM_H
 
 class TriPrism 
 {
 
-private:
-    //set values
-    float al;
-    float bl;
-    float dl;
-    float t;
+	private:
+		//set values
+		float al;
+		float bl;
+		float dl;
+		float t;
 
-public:
-    TriPrism();
-    TriPrism(float a, float b, float d, float theta);
-    ~TriPrism() = default;
-    void draw();
-    /*double GetX();
-    double GetY();
-    double GetZ();
-    void SetX(double xx);
-    void SetY(double yy);
-    void SetZ(double zz);*/
+	public:
+		TriPrism();
+		TriPrism(float a, float b, float d, float theta);
+		~TriPrism() = default;
+		void draw();
+		/*double GetX();
+		double GetY();
+		double GetZ();
+		void SetX(double xx);
+		void SetY(double yy);
+		void SetZ(double zz);*/
 }; 
 
+#endif TRIPRISM_H
 
 
 /*

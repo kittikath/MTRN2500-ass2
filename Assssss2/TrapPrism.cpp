@@ -8,70 +8,83 @@
 
 using namespace std;
 
-TrapPrism::TrapPrism(float a, float b, float d, float h, float offset) {
+TrapPrism::TrapPrism(float a, float b, float d, float h, float offset, float r, float g, float blu) {
     al = a; // a length (length along base)
     bl = b; // b length (length of side)
     dl = d; // depth
     hl = h; //height
     os = offset; // offset
+	red = r;
+	green = g;
+	blue = blu;
 }
 
-void TrapPrism::draw() 
+void TrapPrism::draw()
 {
-    glPushMatrix();
-    
-    //bottom face :)
-    glBegin(GL_QUADS);
-        glVertex3f(-al / 2, 0, dl / 2);
-        glVertex3f(al/2, 0, dl/2);
-        glVertex3f(al/2, 0, -dl/2);
-        glVertex3f(-al/2, 0, -dl/2);
-    glEnd();
+	glPushMatrix();
 
-    // top face
-    
-    glBegin(GL_QUADS);
-        glVertex3f((-al / 2) + os, hl, dl / 2);
-        glVertex3f((al / 2) + os, hl,  dl / 2);
-        glVertex3f((al / 2) + os, hl, -dl / 2);
-        glVertex3f((-al / 2) + os, hl, -dl / 2);
-    glEnd();
+	glColor3d(red, green, blue);
 
-    // front face
+	//bottom face :)
+	glBegin(GL_QUADS);
+	//	glColor3d(1, 0, 0);
+		glVertex3f(-al / 2, 0, dl / 2);
+		glVertex3f(al / 2, 0, dl / 2);
+		glVertex3f(al / 2, 0, -dl / 2);
+		glVertex3f(-al / 2, 0, -dl / 2);
+	glEnd();
 
-    glBegin(GL_QUADS);
-        glVertex3f((-al / 2), 0, dl / 2);
-        glVertex3f((-al / 2) + os, hl,  dl / 2);
-        glVertex3f((al / 2) + os, hl, dl / 2);
-        glVertex3f((-al / 2), 0, dl / 2);
-    glEnd();
+	// top face
 
-        // back face
+	glBegin(GL_QUADS);
+	//	glColor3d(1, 0, 0);
+		glVertex3f((-bl / 2) + os, hl, dl / 2);
+		glVertex3f((bl / 2) + os, hl, dl / 2);
+		glVertex3f((bl / 2) + os, hl, -dl / 2);
+		glVertex3f((-bl / 2) + os, hl, -dl / 2);
+	glEnd();
 
-    glBegin(GL_QUADS);
-        glVertex3f((-al / 2), 0, -dl / 2);
-        glVertex3f((-al / 2) + os, hl,  -dl / 2);
-        glVertex3f((al / 2) + os, hl, -dl / 2);
-        glVertex3f((-al / 2), 0, -dl / 2);
-    glEnd();
+	// front face
 
-        // left side face
+	glBegin(GL_QUADS);
+	//	glColor3d(0, 1, 0);
+		glVertex3f((-al / 2), 0, dl / 2);
+		glVertex3f((-bl / 2) + os, hl, dl / 2);
+		glVertex3f((bl / 2) + os, hl, dl / 2);
+		glVertex3f((al / 2), 0, dl / 2);
+	glEnd();
 
-    glBegin(GL_QUADS);
-        glVertex3f((-al / 2), 0, dl / 2);
-        glVertex3f((-al / 2), 0,  -dl / 2);
-        glVertex3f((-al / 2) + os, hl, -dl / 2);
-        glVertex3f((-al / 2) + os, hl, dl / 2);
-    glEnd();
-    
-        // right side face
+	// back face
 
-    glBegin(GL_QUADS);
-        glVertex3f((al / 2), 0, dl / 2);
-        glVertex3f((al / 2), 0,  -dl / 2);
-        glVertex3f((al / 2) + os, hl, -dl / 2);
-        glVertex3f((al / 2) + os, hl, dl / 2);
-    glEnd();
-   
+	glBegin(GL_QUADS);
+	//	glColor3d(0, 1, 0);
+		glVertex3f((-al / 2), 0, -dl / 2);
+		glVertex3f((-bl / 2) + os, hl, -dl / 2);
+		glVertex3f((bl / 2) + os, hl, -dl / 2);
+		glVertex3f((al / 2), 0, -dl / 2);
+	glEnd();
 
-    glPopMatrix();
+	// left side face
+
+	glBegin(GL_QUADS);
+	//	glColor3d(0, 0, 1);
+		glVertex3f((-al / 2), 0, dl / 2);
+		glVertex3f((-al / 2), 0, -dl / 2);
+		glVertex3f((-bl / 2) + os, hl, -dl / 2);
+		glVertex3f((-bl / 2) + os, hl, dl / 2);
+	glEnd();
+
+	// right side face
+
+	glBegin(GL_QUADS);
+	//	glColor3d(0, 0, 1);
+		glVertex3f((al / 2), 0, dl / 2);
+		glVertex3f((al / 2), 0, -dl / 2);
+		glVertex3f((bl / 2) + os, hl, -dl / 2);
+		glVertex3f((bl / 2) + os, hl, dl / 2);
+	glEnd();
+
+
+	glPopMatrix();
+
+}

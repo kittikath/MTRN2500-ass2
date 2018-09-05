@@ -1,8 +1,7 @@
 #ifndef RECPRISM_H
 #define RECPRISM_H
-#endif RECPRISM_H
 
-class RecPrism 
+class RecPrism
 {
 
 private:
@@ -23,3 +22,5 @@ public:
 	void SetY(double yy);
 	void SetZ(double zz);*/
 }; 
+
+#endif RECPRISM_H

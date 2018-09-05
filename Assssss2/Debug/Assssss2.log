@@ -1,2 +1,3 @@
-﻿  RecPrism.cpp
-  Assssss2.vcxproj -> c:\Users\Student\source\repos\Assssss2\Debug\Assssss2.exe
+﻿  main.cpp
+c:\users\student\desktop\kathkatie\mtrn2500-ass2\assssss2\main.cpp(142): warning C4018: '<': signed/unsigned mismatch
+  Assssss2.vcxproj -> C:\Users\Student\Desktop\kathkatie\MTRN2500-ass2\Debug\Assssss2.exe

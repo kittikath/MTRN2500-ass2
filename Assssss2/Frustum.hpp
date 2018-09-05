@@ -7,6 +7,26 @@
 #include <cstdlib>
 #include "VectorMaths.hpp"
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+#include <unistd.h>
+#include <sys/time.h>
+#elif defined(WIN32)
+#include <Windows.h>
+#include <tchar.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#include <unistd.h>
+#include <sys/time.h>
+#endif
+
 namespace scos {
 
   class Frustum {

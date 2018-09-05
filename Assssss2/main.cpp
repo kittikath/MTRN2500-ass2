@@ -34,6 +34,10 @@
 #include "Shape.hpp"
 #include "Vehicle.hpp"
 #include "RecPrism.h"
+#include "TrapPrism.h"
+#include "TriPrism.h"
+#include "cylinder.h"
+#include "MyVehicle.h"
 
 #include "RemoteDataManager.hpp"
 #include "Messages.hpp"
@@ -158,11 +162,24 @@ void drawGoals()
 
 void TestDiplay() {
 
-	glColor3d(1, 0, 0);
-	RecPrism Rect(10, 10, 10);
-	Rect.draw();
+//	glColor3d(1, 0, 0);
+//	RecPrism Rect(10, 10, 10);
+//	Rect.draw();
 
+//	glColor3d(0, 1, 0);
+//	TriPrism Trip(20, 5, 3, 90);
+//	Trip.draw();
 
+//	glColor3d(0, 0, 1);
+//	TrapPrism Trap(20, 10, 5, 8, 3, 0, 0, 1);
+//	Trap.draw();
+
+	//glColor3d(1, 0, 1);
+//	Cylinder cyl(5, 10, 20);
+//	cyl.draw();
+
+	MyVehicle car(10, 0, 0);
+	car.draw();
 }
 
 void display() {

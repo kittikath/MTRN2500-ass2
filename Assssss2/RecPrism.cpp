@@ -24,6 +24,7 @@ void RecPrism::draw()
 	
 	//bottom face :)
 	glBegin(GL_QUADS);
+//		glColor3d(1, 0, 0);
 		glVertex3f(-xl / 2, 0, zl / 2);
 		glVertex3f(xl/2, 0, zl/2);
 		glVertex3f(xl/2, 0, -zl/2);
@@ -33,11 +34,53 @@ void RecPrism::draw()
 	// top face
 	
 	glBegin(GL_QUADS);
+//		glColor3d(1, 0, 0);
 		glVertex3f(-xl / 2, yl, zl / 2);
 		glVertex3f(xl / 2, yl,  zl / 2);
 		glVertex3f(xl / 2, yl, -zl / 2);
 		glVertex3f(-xl / 2, yl, -zl / 2);
 	glEnd();
+
+	// left side face
+
+	glBegin(GL_QUADS);
+//		glColor3d(0, 1, 0);
+		glVertex3f(-xl / 2, 0, zl / 2);
+		glVertex3f(-xl / 2, 0, -zl / 2);
+		glVertex3f(-xl / 2, yl, -zl / 2);
+		glVertex3f(-xl / 2, yl, zl / 2);
+	glEnd();
+
+	// right side face
+
+	glBegin(GL_QUADS);
+//		glColor3d(0, 1, 0);
+		glVertex3f(xl / 2, 0, zl / 2);
+		glVertex3f(xl / 2, 0, -zl / 2);
+		glVertex3f(xl / 2, yl, -zl / 2);
+		glVertex3f(xl / 2, yl, zl / 2);
+	glEnd();
+
+	// front face
+
+	glBegin(GL_QUADS);
+//		glColor3d(0, 0, 1);
+		glVertex3f(-xl / 2, 0, zl / 2);
+		glVertex3f(-xl / 2, yl, zl / 2);
+		glVertex3f(xl / 2, yl, zl / 2);
+		glVertex3f(xl / 2, 0, zl / 2);
+	glEnd();
+
+	// back face
+
+	glBegin(GL_QUADS);
+//		glColor3d(0, 0, 1);
+		glVertex3f(-xl / 2, 0, -zl / 2);
+		glVertex3f(-xl / 2, yl, -zl / 2);
+		glVertex3f(xl / 2, yl, -zl / 2);
+		glVertex3f(xl / 2, 0, -zl / 2);
+	glEnd();
+
 	
 
 	glPopMatrix();

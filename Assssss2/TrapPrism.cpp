@@ -21,6 +21,8 @@ TrapPrism::TrapPrism(float a, float b, float d, float h, float offset, float r, 
 
 void TrapPrism::draw()
 {
+	float diff = (al - bl) / 2;
+	
 	glPushMatrix();
 
 	glColor3d(red, green, blue);
@@ -38,10 +40,10 @@ void TrapPrism::draw()
 
 	glBegin(GL_QUADS);
 	//	glColor3d(1, 0, 0);
-		glVertex3f((-bl / 2) + os, hl, dl / 2);
-		glVertex3f((bl / 2) + os, hl, dl / 2);
-		glVertex3f((bl / 2) + os, hl, -dl / 2);
-		glVertex3f((-bl / 2) + os, hl, -dl / 2);
+		glVertex3f((-bl / 2) - diff + os, hl, dl / 2);
+		glVertex3f((bl / 2) - diff + os, hl, dl / 2);
+		glVertex3f((bl / 2) - diff + os, hl, -dl / 2);
+		glVertex3f((-bl / 2) - diff + os, hl, -dl / 2);
 	glEnd();
 
 	// front face
@@ -49,8 +51,8 @@ void TrapPrism::draw()
 	glBegin(GL_QUADS);
 	//	glColor3d(0, 1, 0);
 		glVertex3f((-al / 2), 0, dl / 2);
-		glVertex3f((-bl / 2) + os, hl, dl / 2);
-		glVertex3f((bl / 2) + os, hl, dl / 2);
+		glVertex3f((-bl / 2) - diff + os, hl, dl / 2);
+		glVertex3f((bl / 2) - diff + os, hl, dl / 2);
 		glVertex3f((al / 2), 0, dl / 2);
 	glEnd();
 
@@ -59,9 +61,9 @@ void TrapPrism::draw()
 	glBegin(GL_QUADS);
 	//	glColor3d(0, 1, 0);
 		glVertex3f((-al / 2), 0, -dl / 2);
-		glVertex3f((-bl / 2) + os, hl, -dl / 2);
-		glVertex3f((bl / 2) + os, hl, -dl / 2);
-		glVertex3f((al / 2), 0, -dl / 2);
+		glVertex3f((-bl / 2) - diff + os, hl, -dl / 2);
+		glVertex3f((bl / 2) - diff + os, hl, -dl / 2);
+		glVertex3f((al / 2), 0, -dl / 2); 
 	glEnd();
 
 	// left side face
@@ -70,8 +72,8 @@ void TrapPrism::draw()
 	//	glColor3d(0, 0, 1);
 		glVertex3f((-al / 2), 0, dl / 2);
 		glVertex3f((-al / 2), 0, -dl / 2);
-		glVertex3f((-bl / 2) + os, hl, -dl / 2);
-		glVertex3f((-bl / 2) + os, hl, dl / 2);
+		glVertex3f((-bl / 2) - diff + os, hl, -dl / 2);
+		glVertex3f((-bl / 2) - diff + os, hl, dl / 2);
 	glEnd();
 
 	// right side face
@@ -80,8 +82,8 @@ void TrapPrism::draw()
 	//	glColor3d(0, 0, 1);
 		glVertex3f((al / 2), 0, dl / 2);
 		glVertex3f((al / 2), 0, -dl / 2);
-		glVertex3f((bl / 2) + os, hl, -dl / 2);
-		glVertex3f((bl / 2) + os, hl, dl / 2);
+		glVertex3f((bl / 2) - diff + os, hl, -dl / 2);
+		glVertex3f((bl / 2) - diff + os, hl, dl / 2);
 	glEnd();
 
 

@@ -8,15 +8,12 @@
 
 using namespace std;
 
-TrapPrism::TrapPrism(float a, float b, float d, float h, float offset, float r, float g, float blu) {
+TrapPrism::TrapPrism(float a, float b, float d, float h, float offset) {
     al = a; // a length (length along base)
     bl = b; // b length (length of side)
     dl = d; // depth
     hl = h; //height
     os = offset; // offset
-	red = r;
-	green = g;
-	blue = blu;
 }
 
 void TrapPrism::draw()
@@ -24,8 +21,8 @@ void TrapPrism::draw()
 	float diff = (al - bl) / 2;
 	
 	glPushMatrix();
-
-	glColor3d(red, green, blue);
+	positionInGL();
+	setColorInGL();
 
 	//bottom face :)
 	glBegin(GL_QUADS);

@@ -1,7 +1,10 @@
 #ifndef RECPRISM_H
 #define RECPRISM_H
 
-class RecPrism
+#include "Shape.hpp"
+
+
+class RecPrism : public Shape
 {
 
 private:

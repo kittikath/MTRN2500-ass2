@@ -4,62 +4,58 @@
 
 using namespace std;
 
-MyVehicle::MyVehicle(float x, float y, float z) {
-	X = x;
-	Y = y;
-	Z = z;
+MyVehicle::MyVehicle(float x_, float y_, float z_) {
+	X = x_;
+	Y = y_;
+	Z = z_;
 }
 
 void MyVehicle::draw()
 {
 
-	glTranslated(X, Y, Z);
+//	glTranslated(X, Y, Z);
 	
 	glPushMatrix();
-		glColor3d(1, 0, 0);
-		glTranslated(0, 5, 0);
-		RecPrism CarRec(20, 8, 10);
+	positionInGL();
+	setColorInGL();
+
+		RecPrism CarRec(20, 4, 10);
+		CarRec.setPosition(0, 3, 0);
+		CarRec.setColor(1, 0, 0);
 		CarRec.draw();
-	glPopMatrix();
 	
-	glPushMatrix();
-		glTranslated(13, 5, 0);
-		glColor3d(0, 1, 0);
-		TriPrism CarTri(6, 8, 10, 90);
+		TriPrism CarTri(2, 2, 10, 90);
+		CarTri.setPosition(-9, 7, 0);
+		CarTri.setColor(1, 0, 0);
 		CarTri.draw();
-	glPopMatrix();
 
-	glPushMatrix();
-		glTranslated(0, 13, 0);
-		TrapPrism CarTrap(10, 4, 10, 4, -3, 0, 1, 1);
+		TrapPrism CarTrap(12, 6, 10, 2, 2); // a, b, d, h, o
+		CarTrap.setPosition(0, 7, 0);
+		CarTrap.setColor(0, 1, 1);
 		CarTrap.draw();
+
+
+		Cylinder CarCyl1(2, 4, 20);
+		CarCyl1.setPosition(6.5, 0, 5.5);
+		CarCyl1.setColor(0.5, 0.5, 0.5);
+		CarCyl1.draw();
+
+		Cylinder CarCyl2(2, 4, 20);
+		CarCyl2.setPosition(6.5, 0, -5.5);
+		CarCyl2.setColor(0.5, 0.5, 0.5);
+		CarCyl2.draw();
+
+		Cylinder CarCyl3(2, 4, 20);
+		CarCyl3.setPosition(-6.5, 0, -5.5);
+		CarCyl3.setColor(0.5, 0.5, 0.5);
+		CarCyl3.draw();
+
+		Cylinder CarCyl4(2, 4, 20);
+		CarCyl4.setPosition(-6.5, 0, 5.5);
+		CarCyl4.setColor(0.5, 0.5, 0.5);
+		CarCyl4.draw();
+
 	glPopMatrix();
 
-	glPushMatrix();
-	glTranslated(8, 0, 4);
-//		glColor3d(1, 0, 1);
-		Cylinder cyl1(2.5, 2, 20);
-		cyl1.draw();
-	glPopMatrix();
 
-	glPushMatrix();
-		glTranslated(8, 0, -4);
-//		glColor3d(1, 0, 1);
-		Cylinder cyl2(2.5, 2, 20);
-		cyl2.draw();
-	glPopMatrix();
-
-	glPushMatrix();
-		glTranslated(-8, 0, 4);
-//		glColor3d(1, 0, 1);
-		Cylinder cyl3(2.5, 2, 20);
-		cyl3.draw();
-	glPopMatrix();
-
-	glPushMatrix();
-		glTranslated(-8, 0, -4);
-//		glColor3d(1, 0, 1);
-		Cylinder cyl4(2.5, 2, 20);
-		cyl4.draw();
-	glPopMatrix();
 };

@@ -25,7 +25,9 @@ void TriPrism::draw()
 	t = t * (PI / 180);
 
     glPushMatrix();
-    
+	positionInGL();
+	setColorInGL();
+
     //bottom face :)
     glBegin(GL_QUADS);
 		//glColor3d(0, 1, 0);

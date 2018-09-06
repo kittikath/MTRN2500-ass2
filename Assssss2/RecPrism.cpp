@@ -19,6 +19,8 @@ RecPrism::RecPrism(float x, float y, float z) {
 void RecPrism::draw() 
 {
 	glPushMatrix();
+	positionInGL();
+	setColorInGL();
 	//glRotated(45, 0, 0, 1); //angle, x, y, z, true or false
 	//glTranslated(10, 0, 0);
 	

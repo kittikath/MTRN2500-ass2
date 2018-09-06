@@ -112,7 +112,7 @@ int main(int argc, char ** argv) {
 	//   custom vehicle.
 	// -------------------------------------------------------------------------
 
-	//vehicle = new MyVehicle();
+	vehicle = new MyVehicle(0,0,0);
 
 
 	// add test obstacles
@@ -157,29 +157,46 @@ void drawGoals()
 		glPopMatrix();
 	}
 }
-
-
-
+/*
+ASSIGNMENT PART2
+	connect to server
+	uncomment the lines necessary
+	wheels that roll when driving
+	front wheels steer
+	send car ot server - through message function
+	student code section
+	sending vehicle model structure inside myvehicleadd shape function
+	need tto package that info and display in ShapeInIt structure
+	speed and steering two protected functions in vehicle
+	need to rotation about the right axis
+*/
 void TestDiplay() {
 
-//	glColor3d(1, 0, 0);
-//	RecPrism Rect(10, 10, 10);
-//	Rect.draw();
+		RecPrism Rect(10, 10, 10);
+		Rect.setPosition(20, 0, 20);
+		Rect.setRotation(45);
+		Rect.setColor(1, 0, 0);
+		Rect.draw();
 
-//	glColor3d(0, 1, 0);
-//	TriPrism Trip(20, 5, 3, 90);
-//	Trip.draw();
+		TriPrism Trip(20, 5, 3, 90);
+		Trip.setPosition(-20, 0, 20);
+		Trip.setRotation(45);
+		Trip.setColor(0, 1, 0);
+		Trip.draw();
 
-//	glColor3d(0, 0, 1);
-//	TrapPrism Trap(20, 10, 5, 8, 3, 0, 0, 1);
-//	Trap.draw();
+		TrapPrism Trap(20, 10, 5, 8, 3);  // a, b, d, h, o
+		Trap.setPosition(-20,0,-20);
+		Trap.setRotation(0);
+		Trap.setColor(0,0,1);
+		Trap.draw();
 
-	//glColor3d(1, 0, 1);
-//	Cylinder cyl(5, 10, 20);
-//	cyl.draw();
+		Cylinder cyl(5, 10, 20);
+		cyl.setPosition(20, 0, -20);
+		cyl.setRotation(90);
+		cyl.setColor(1, 1, 1);
+		cyl.draw();
 
-	MyVehicle car(10, 0, 0);
-	car.draw();
+
 }
 
 void display() {
@@ -325,7 +342,7 @@ void idle() {
 				otherVehicles.clear();
 
 				// uncomment this line to connect to the robotics server.
-				//RemoteDataManager::Connect("www.robotics.unsw.edu.au","18081");
+				RemoteDataManager::Connect("www.robotics.unsw.edu.au","18081");
 
 				// on connect, let's tell the server what we look like
 				if (RemoteDataManager::IsConnected()) {
@@ -371,8 +388,8 @@ void idle() {
 							for(unsigned int i = 0; i < models.size(); i++) {
 								VehicleModel vm = models[i];
 								
-								// uncomment the line below to create remote vehicles
-								//otherVehicles[vm.remoteID] = new MyVehicle();
+								//uncomment the line below to create remote vehicles
+								otherVehicles[vm.remoteID] = new MyVehicle(0, 0, 0);
 
 								//
 								// more student code goes here

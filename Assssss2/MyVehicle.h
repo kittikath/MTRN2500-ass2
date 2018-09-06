@@ -22,7 +22,7 @@ class MyVehicle : public Vehicle {
 
 	public:
 		MyVehicle();
-		MyVehicle(float x, float y, float z);
+		MyVehicle(float x_, float y_, float z_);
 		~MyVehicle() = default;
 		void draw();
 	

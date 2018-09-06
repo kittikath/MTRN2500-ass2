@@ -19,15 +19,12 @@ Cylinder::Cylinder(float x, float y, float z) {
 void Cylinder::draw() 
 {
 	glPushMatrix();
-	//glRotated(45, 0, 0, 1); //angle, x, y, z, true or false
-	//glTranslated(10, 0, 0);
-	
-		glColor3d(0.5, 0.5, 0.5);
+		positionInGL();
+		setColorInGL();
 		glTranslated(0, radius, -length/2);
 		GLUquadricObj *p = gluNewQuadric();
 		gluCylinder(p, radius, radius, length, slice, 1);
 
-		//glColor3d(0, 1, 1);
 		GLUquadric *c = gluNewQuadric();
 		gluDisk(c, 0, radius, slice, 1);
         

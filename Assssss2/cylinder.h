@@ -1,8 +1,8 @@
 #ifndef CYLINDER_H
 #define CYLINDER_H
+#include "Shape.hpp"
 
-
-class Cylinder {
+class Cylinder : public Shape {
 
 private:
 	//set values

@@ -1,0 +1,4 @@
+﻿  main.cpp
+g:\mtrn2500-ass2\assssss2\main.cpp(146): warning C4018: '<': signed/unsigned mismatch
+g:\mtrn2500-ass2\assssss2\main.cpp(320): warning C4018: '<': signed/unsigned mismatch
+  Assssss2.vcxproj -> G:\MTRN2500-ass2\Debug\Assssss2.exe

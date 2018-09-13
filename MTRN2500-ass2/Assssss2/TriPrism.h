@@ -15,7 +15,16 @@ class TriPrism : public Shape
 		TriPrism(float a, float b, float d, float theta);
 		~TriPrism() = default;
 		void draw();
+		double GetX();
+		double GetY();
+		double GetZ();
+		double GetAngle();
+		void SetX(double xx);
+		void SetY(double yy);
+		void SetZ(double zz);
+		void SetAngle(double qq);
 }; 
 
 #endif TRIPRISM_H
+
 

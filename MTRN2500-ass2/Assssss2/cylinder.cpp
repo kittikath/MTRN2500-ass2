@@ -12,10 +12,10 @@
 
 using namespace std;
 
-Cylinder::Cylinder(float x, float y, float z, bool isRolling, bool isSteering) {
+Cylinder::Cylinder(float x, float y, bool isRolling, bool isSteering) {
 	radius = x;
 	length = y;
-	slice = z;
+
 	//this->isRolling = NULL;
 	//this->isSteering = NULL;
 	rolling = isRolling;
@@ -26,6 +26,7 @@ Cylinder::Cylinder(float x, float y, float z, bool isRolling, bool isSteering) {
 
 void Cylinder::draw()
 {
+	float slice = 6;
 	glPushMatrix();
 	positionInGL();
 	setColorInGL();
@@ -41,22 +42,67 @@ void Cylinder::draw()
 	GLUquadric *d = gluNewQuadric();
 	gluDisk(d, 0, radius, slice, 1);
 
+	//glPopMatrix();
+//	glTranslatef(x, y, z);
+
+		//if (steering) {
+	wheelSteering();
+			//setRotation(rotation);
+	//	}
+		/*
+	if (rolling) {
+	wheelRotation();
+	}
+	if (steering || rolling) {
+	wheelDraw();
+	}*/
+	
+	//CylinderDraw();
+
+
 	glPopMatrix();
+
+	/*if (rolling) {
+	glPopMatrix();
+	}
+	if (steering) {
+	glPopMatrix();
+	}*/
 
 }
 
+
+void Cylinder::wheelRotation() {
+
+	glTranslated(0, radius, 0);
+	glRotated(-roll, 0, 0, 1);
+	glTranslated(0, -radius, 0);
+	glPushMatrix();
+
+}
+
+void Cylinder::wheelSteering() {
+	glRotatef(steer, 0, 1, 0);
+	//glPushMatrix();
+}
+/*
+float Cylinder::getRoll() {
+	return roll;
+}
+
+*/
 /*
 
 void Cylinder::setSteer (double steering)
 {
 	this->steering = steering;
 }
-
+*/
 double Cylinder::getSteer()
 {
-	return steering;
+	return steer;
 }
-
+/*
 void Cylinder::setRoll(double rolling)
 {
 	this->rolling = rolling;

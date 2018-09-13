@@ -47,6 +47,7 @@
 #include "TriPrism.h"
 #include "cylinder.h"
 #include "MyVehicle.h"
+//#include "Wheel.h"
 
 void display();
 void reshape(int width, int height);
@@ -305,7 +306,8 @@ void idle() {
 				otherVehicles.clear();
 
 				// uncomment this line to connect to the robotics server.
-				RemoteDataManager::Connect("www.robotics.unsw.edu.au","18081");
+				RemoteDataManager::Connect("192.168.1.1","18081");
+				//www.robotics.unsw.edu.au
 
 				// on connect, let's tell the server what we look like
 				if (RemoteDataManager::IsConnected()) {
@@ -324,7 +326,7 @@ void idle() {
 					vehicle.xyz[0] = ListShape[i]->getX();
 					vehicle.xyz[1] = ListShape[i]->getY();
 					vehicle.xyz[2] = ListShape[i]->getZ();
-					vehicle.rotation = ListShape[i]->getRotation;
+					vehicle.rotation = ListShape[i]->getRotation();
 					vehicle.rgb[0] = ListShape[i]->getRed();
 					vehicle.rgb[1] = ListShape[i]->getGreen();
 					vehicle.rgb[2] = ListShape[i]->getBlue();
@@ -369,17 +371,121 @@ void idle() {
 				case 'M':
 				{
 					std::vector<VehicleModel> models = GetVehicleModels(msg.payload);
-					for (unsigned int i = 0; i < models.size(); i++) {
-						VehicleModel vm = models[i];
+					for (unsigned int j = 0; j < models.size(); j++) {
+						VehicleModel vm = models[j];
 
 						// uncomment the line below to create remote vehicles
 						otherVehicles[vm.remoteID] = new MyVehicle();
-
+						//std::vector<ShapeInit>::iterator it;
+						ShapeInit it;
+						
 						//
 						// more student code goes here
 						//
-						for (std::vector<ShapeInit>::iterator it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
+						
+						int i;
+						
+						Shape * sh = NULL;
+						const double time = 0.042;
+						//sh = new Wheel (length, radius, isRolling, isSteering);
+						vm.shapes.push_back(it);
+						for (i = 0; i < vm.shapes.size(); i++) {
+
+							if (vm.shapes[i].type == CYLINDER) {
+								sh = new Cylinder (
+									vm.shapes[i].params.cyl.radius,
+									vm.shapes[i].params.cyl.depth,
+
+									vm.shapes[i].params.cyl.isRolling,
+									vm.shapes[i].params.cyl.isSteering
+								);
+								sh->setPosition(
+									vm.shapes[i].xyz[0],
+									vm.shapes[i].xyz[1],
+									vm.shapes[i].xyz[2]
+								);
+								sh->setColor(
+									vm.shapes[i].rgb[0],
+									vm.shapes[i].rgb[1],
+									vm.shapes[i].rgb[2]
+								);
+								sh->setRotation(vm.shapes[i].rotation);
+								otherVehicles[vm.remoteID]->addShape(sh);
+							}
+
+							if (vm.shapes[i].type == RECTANGULAR_PRISM) {
+								sh = new RecPrism(
+									vm.shapes[i].params.rect.xlen,
+									vm.shapes[i].params.rect.ylen,
+									vm.shapes[i].params.rect.zlen
+								);
+								sh->setPosition(
+									vm.shapes[i].xyz[0],
+									vm.shapes[i].xyz[1],
+									vm.shapes[i].xyz[2]
+								);
+								sh->setColor(
+									vm.shapes[i].rgb[0],
+									vm.shapes[i].rgb[1],
+									vm.shapes[i].rgb[2]
+								);
+								sh->setRotation(vm.shapes[i].rotation);
+								otherVehicles[vm.remoteID]->addShape(sh);
+							}
+							if (vm.shapes[i].type == TRIANGULAR_PRISM) {
+								sh = new TriPrism(
+									vm.shapes[i].params.tri.alen,
+									vm.shapes[i].params.tri.blen,
+									vm.shapes[i].params.tri.depth,
+									vm.shapes[i].params.tri.angle
+								);
+								sh->setPosition(
+									vm.shapes[i].xyz[0],
+									vm.shapes[i].xyz[1],
+									vm.shapes[i].xyz[2]
+								);
+								sh->setColor(
+									vm.shapes[i].rgb[0],
+									vm.shapes[i].rgb[1],
+									vm.shapes[i].rgb[2]
+								);
+								sh->setRotation(vm.shapes[i].rotation);
+								otherVehicles[vm.remoteID]->addShape(sh);
+							}
+							if (vm.shapes[i].type == TRAPEZOIDAL_PRISM) {
+								sh = new TrapPrism(
+									vm.shapes[i].params.trap.alen,
+									vm.shapes[i].params.trap.blen,
+									vm.shapes[i].params.trap.depth,
+									vm.shapes[i].params.trap.height,
+									vm.shapes[i].params.trap.aoff
+								);
+								sh->setPosition(
+									vm.shapes[i].xyz[0],
+									vm.shapes[i].xyz[1],
+									vm.shapes[i].xyz[2]
+								);
+								sh->setColor(
+									vm.shapes[i].rgb[0],
+									vm.shapes[i].rgb[1],
+									vm.shapes[i].rgb[2]
+								);
+								sh->setRotation(vm.shapes[i].rotation);
+								otherVehicles[vm.remoteID]->addShape(sh);
+							}
 							
+						}
+						
+						/*for (std::vector<ShapeInit>::iterator it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
+							//for (int i = 0; i < vm.shapes.size(); i++)
+							// vm.shapes[i].type
+
+							//if (vm.shapes[1].type == 1) 
+							//vm.shapes[i].params.rect.xlen;
+							//vm.shapes[i].rotationvm.shapes[i].xyz[0-2]
+
+							//vm shapes = obtain vector shape in it
+
 							if (it->type == RECTANGULAR_PRISM) {
 							RecPrism* r = new RecPrism(it->params.rect.xlen, it->params.rect.ylen, it->params.rect.zlen);
 							r->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
@@ -401,7 +507,7 @@ void idle() {
 							otherVehicles[vm.remoteID]->addShape(trap);
 
 							}else if(it->type == CYLINDER){
-							Cylinder* c = new Cylinder(it->params.cyl.radius, it->params.cyl.depth, 6, it->params.cyl.isRolling, it->params.cyl.isSteering);
+							Cylinder* c = new Cylinder(it->params.cyl.radius, it->params.cyl.depth, it->params.cyl.isRolling, it->params.cyl.isSteering);
 							c->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
 							c->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
 							otherVehicles[vm.remoteID]->addShape(c);
@@ -410,8 +516,10 @@ void idle() {
 
 							
 
-						}
+						}*/
 					}
+
+
 					break;
 				}
 

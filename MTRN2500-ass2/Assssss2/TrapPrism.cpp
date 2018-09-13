@@ -87,3 +87,33 @@ void TrapPrism::draw()
 	glPopMatrix();
 
 }
+
+double TrapPrism::GetX()
+{
+	return al;
+}
+
+double TrapPrism::GetY()
+{
+	return bl;
+}
+
+double TrapPrism::GetZ()
+{
+	return dl;
+}
+
+void TrapPrism::SetX(double xx)
+{
+	al = xx;
+}
+
+void TrapPrism::SetY(double yy)
+{
+	bl = yy;
+}
+
+void TrapPrism::SetZ(double zz)
+{
+	dl = zz;
+}

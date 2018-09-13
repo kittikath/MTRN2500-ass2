@@ -78,3 +78,41 @@ void TriPrism::draw()
     glPopMatrix();
 
 }
+
+double TriPrism::GetX()
+{
+	return al;
+}
+
+double TriPrism::GetY()
+{
+	return bl;
+}
+
+double TriPrism::GetZ()
+{
+	return dl;
+}
+
+double TriPrism::GetAngle() {
+	return t;
+}
+
+void TriPrism::SetX(double xx)
+{
+	al = xx;
+}
+
+void TriPrism::SetY(double yy)
+{
+	bl = yy;
+}
+
+void TriPrism::SetZ(double zz)
+{
+	dl = zz;
+}
+
+void TriPrism::SetAngle(double qq) {
+	t = qq;
+}

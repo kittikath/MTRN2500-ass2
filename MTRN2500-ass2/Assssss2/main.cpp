@@ -320,6 +320,9 @@ void idle() {
 					// student code goes here
 					std::vector<Shape*>ListShape = dynamic_cast<MyVehicle*>(vehicle)->getShapes();
 					for (int i = 0; i < ListShape.size(); i++) {
+					
+					//VehicleModel vm = ((MyVehicle*)vehicle)->GetModel();
+					//model.shapes.pushback(shapes)
 
 					ShapeInit vehicle;
 

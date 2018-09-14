@@ -18,7 +18,7 @@ private:
 
 public:
 	Cylinder();
-	Cylinder(float x, float y, bool isSteering, bool isRolling);
+	Cylinder(float x, float y, bool isSteering_, bool isRolling_);
 
 	~Cylinder() = default;
 

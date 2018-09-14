@@ -35,28 +35,35 @@ MyVehicle::MyVehicle(float x_, float y_, float z_) {
 		CarTrap->setColor(0, 1, 1);
 		addShape(CarTrap);
 
-		Cylinder *Wheel1 = new Cylinder(2, 4, 0, 0);
+		Cylinder *Wheel1 = new Cylinder(2, 4, 0, TRUE);
 //		Cylinder *cyl1 = dynamic_cast<Cylinder*>(Wheel1);
 		Wheel1->setPosition(6.5, 0, 5.5);
-		Wheel1->setColor(0.5, 0.5, 0.5);
-//		Wheel1->setRotation(steering);
+		Wheel1->setColor(0.5, 0.5, 0.5);\
+			// dynamic cast here
+			if (steering != 0) {
+				Wheel1->setRotation(steering);
+			}
 		addShape(Wheel1);
 
-		Cylinder *Wheel2 = new Cylinder(2, 4, 0, 0);
+		Cylinder *Wheel2 = new Cylinder(2, 4, 0, TRUE);
 //		Cylinder *cyl2 = dynamic_cast<Cylinder*>(Wheel2);
 		Wheel2->setPosition(6.5, 0, -5.5);
 		Wheel2->setColor(0.5, 0.5, 0.5);
-//		Wheel2->setRotation(steering);
+		// dynamic cast her
+	
+
+		
+//		Wheel2->setRotation(rotation);
 		addShape(Wheel2);
 
-		Cylinder *Wheel3 = new Cylinder(2, 4, 0, 0);
+		Cylinder *Wheel3 = new Cylinder(2, 4, 0, FALSE);
 //		Cylinder *cyl3 = dynamic_cast<Cylinder*>(Wheel3);
 		Wheel3->setPosition(-6.5, 0, -5.5);
-		Wheel3->setColor(1, 1, 1);
+		Wheel3->setColor(0.5, 0.5, 0.5);
 //		Wheel3->setRotation(steering);
 		addShape(Wheel3);
 
-		Cylinder *Wheel4 = new Cylinder(2, 4, 0, 0);
+		Cylinder *Wheel4 = new Cylinder(2, 4, 0, FALSE);
 		Wheel4->setPosition(-6.5, 0, 5.5);
 		Wheel4->setColor(0.5, 0.5, 0.5);
 //		Wheel4->setRotation(steering);
@@ -79,18 +86,21 @@ void MyVehicle::draw()
 	positionInGL();
 	setColorInGL();
 
-	std::vector<Shape *>::iterator it;
-
-//	Cylinder *cyl;
-		for (it = shapes.begin(); it != shapes.end(); it++)
+		for (int i = 0; i < shapes.size(); i++)
 		{
-			if (dynamic_cast <Cylinder *> (*it)){
-				dynamic_cast<Cylinder *>(*it) -> steer;
-				//dynamic_cast<Cylinder *>(*it)->setRoll(-speed / dynamic_cast<Cylinder *>(*it) - getRadius() + dynamic_cast<Cylinder *> (*it)->getRoll());
+			Cylinder *wheel = dynamic_cast <Cylinder *>(shapes[i]);
+
+			if (wheel != nullptr && wheel->isSteering == TRUE)
+			{
+				std::cout << "found wheel	" << steering << std::endl;
+
+				wheel->setRotation(steering);
 			}
-			(*it)->draw();
-		//	cyl = dynamic_cast<Cylinder*>(*it);
-		//	if (cyl != nullptr)
+
+			// same kind of thing as steer but may go in cylinder more work lololol
+			
+			
+			shapes[i]->draw();
 
 		}
 //	for (int i = 0; i < shapes.size(); i++) {

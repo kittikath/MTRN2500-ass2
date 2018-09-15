@@ -306,8 +306,9 @@ void idle() {
 				otherVehicles.clear();
 
 				// uncomment this line to connect to the robotics server.
-				RemoteDataManager::Connect("192.168.1.1","18081");
+				RemoteDataManager::Connect("www.robotics.unsw.edu.au","18081");
 				//www.robotics.unsw.edu.au
+				//192.168.1.1
 
 				// on connect, let's tell the server what we look like
 				if (RemoteDataManager::IsConnected()) {
@@ -393,7 +394,7 @@ void idle() {
 						//sh = new Wheel (length, radius, isRolling, isSteering);
 						vm.shapes.push_back(it);
 						int k = 0;
-						for (k = 0; k < 20; k++) {
+						for (k = 0; k < vm.shapes.size(); k++) {
 							for (i = 0; i < vm.shapes.size(); i++) {
 
 								if (vm.shapes[i].type == CYLINDER) {
@@ -481,6 +482,7 @@ void idle() {
 
 							}
 						}
+					}
 						
 						/*for (std::vector<ShapeInit>::iterator it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
 							//for (int i = 0; i < vm.shapes.size(); i++)

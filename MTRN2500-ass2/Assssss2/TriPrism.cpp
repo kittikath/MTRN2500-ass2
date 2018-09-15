@@ -37,22 +37,22 @@ void TriPrism::draw()
 
     // front face
     
-    glBegin(GL_QUADS);
+    glBegin(GL_TRIANGLES);
 		//glColor3d(0, 1, 0);
         glVertex3f(-al / 2, 0, dl / 2);
         glVertex3f((bl*cos(t))-(al/2), bl*sin(t),  dl / 2);
-        glVertex3f(al / 2, 0, dl / 2);
+     //   glVertex3f(al / 2, 0, dl / 2);
 		glVertex3f(al / 2, 0, dl / 2);
     glEnd();
 
         // back face
     
-    glBegin(GL_QUADS);
+    glBegin(GL_TRIANGLES);
 		//glColor3d(0, 1, 0);
         glVertex3f(-al / 2, 0, -dl / 2);
         glVertex3f((bl*cos(t))-(al/2), bl*sin(t),  -dl / 2);
         glVertex3f(al / 2, 0, -dl / 2);
-		glVertex3f(al / 2, 0, -dl / 2);
+	//	glVertex3f(al / 2, 0, -dl / 2);
     glEnd();
 
          // left side face

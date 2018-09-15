@@ -5,6 +5,8 @@
 
 using namespace std;
 
+//double angle = 0;
+
 MyVehicle::MyVehicle()
 {
 }
@@ -35,42 +37,27 @@ MyVehicle::MyVehicle(float x_, float y_, float z_) {
 		CarTrap->setColor(0, 1, 1);
 		addShape(CarTrap);
 
-		Cylinder *Wheel1 = new Cylinder(2, 4, 0, TRUE);
-//		Cylinder *cyl1 = dynamic_cast<Cylinder*>(Wheel1);
+		Cylinder *Wheel1 = new Cylinder(2, 4, TRUE, TRUE);
 		Wheel1->setPosition(6.5, 0, 5.5);
-		Wheel1->setColor(0.5, 0.5, 0.5);\
-			// dynamic cast here
-			if (steering != 0) {
-				Wheel1->setRotation(steering);
-			}
+		Wheel1->setColor(0.5, 0.5, 0.5);
 		addShape(Wheel1);
 
-		Cylinder *Wheel2 = new Cylinder(2, 4, 0, TRUE);
-//		Cylinder *cyl2 = dynamic_cast<Cylinder*>(Wheel2);
+		Cylinder *Wheel2 = new Cylinder(2, 4, TRUE, TRUE);
 		Wheel2->setPosition(6.5, 0, -5.5);
 		Wheel2->setColor(0.5, 0.5, 0.5);
-		// dynamic cast her
-	
-
-		
-//		Wheel2->setRotation(rotation);
 		addShape(Wheel2);
 
-		Cylinder *Wheel3 = new Cylinder(2, 4, 0, FALSE);
-//		Cylinder *cyl3 = dynamic_cast<Cylinder*>(Wheel3);
+		Cylinder *Wheel3 = new Cylinder(2, 4, TRUE, FALSE);
 		Wheel3->setPosition(-6.5, 0, -5.5);
 		Wheel3->setColor(0.5, 0.5, 0.5);
-//		Wheel3->setRotation(steering);
 		addShape(Wheel3);
 
-		Cylinder *Wheel4 = new Cylinder(2, 4, 0, FALSE);
+		Cylinder *Wheel4 = new Cylinder(2, 4, TRUE, FALSE);
 		Wheel4->setPosition(-6.5, 0, 5.5);
 		Wheel4->setColor(0.5, 0.5, 0.5);
 //		Wheel4->setRotation(steering);
 		addShape(Wheel4);
 
-	//	Wheel1->setSteer(TRUE);
-	//	Wheel2->setSteer(TRUE);
 }
 
 /*
@@ -92,22 +79,20 @@ void MyVehicle::draw()
 
 			if (wheel != nullptr && wheel->isSteering == TRUE)
 			{
-				std::cout << "found wheel	" << steering << std::endl;
-
 				wheel->setRotation(steering);
 			}
-
-			// same kind of thing as steer but may go in cylinder more work lololol
 			
+			if (wheel != nullptr && wheel->isRolling == TRUE)
+			{
+				//std::cout << "angle" << angle << std::endl;
+				wheel->setRolling(speed);
+				//glRotated(speed / 2, 0, 0, 1);
+
+			}
 			
 			shapes[i]->draw();
 
 		}
-//	for (int i = 0; i < shapes.size(); i++) {
-//		Cylinder *cyl = dynamic_cast<Cylinder*>(cyl);
-//		shapes[i]->draw();	}
-
-	
 
 	glPopMatrix();
 }

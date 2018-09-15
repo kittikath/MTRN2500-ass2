@@ -11,10 +11,14 @@ private:
 	float radius;
 	float length;
 
-	float angle;
+//	float angle;
 	bool rolling;
 	bool steering;
 	double roll;
+
+	double angle;
+	double store;
+
 
 public:
 	Cylinder();
@@ -27,30 +31,19 @@ public:
 	void setRadius(double radius);
 	double getRadius();
 
-//	void setSteer(double steering);
 	double getSteer();
 	double steer;
 	
-//	void setRoll(double rolling);
-//	void getRoll();
-//	void getRadius();
-//	double getSteer;
-	//	bool isRoll();
-	//	bool isSteer();
-	//	void setRolling(bool setRoll);
-	//	void setSteering(bool setSteer);
+	void setRolling(double speed_);
 
-	//bool setSpin();
-	//bool roll();
-	//float setroll(double speed);
 	void wheelRotation();
 	void wheelSteering();
-	//void wheelDraw();
-	//	void draw();
+
 	bool isRolling;
 	bool isSteering;
-	//void setRolling(double roll);
 
+	//double lastAngle;
+	//double newAngle;
 };
 
 

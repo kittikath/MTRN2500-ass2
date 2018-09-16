@@ -18,10 +18,14 @@ public:
     void draw();
 	double GetX();
 	double GetY();
-	double GetZ();
+	double GetDepth();
+	double GetHeight();
+	double GetOffset();
 	void SetX(double xx);
 	void SetY(double yy);
-	void SetZ(double zz);
+	void SetDepth(double dd);
+	void SetHeight(double hh);
+	void SetOffset(double oo);
 }; 
 
 #endif TRAPPRISM_H

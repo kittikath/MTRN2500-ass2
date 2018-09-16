@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -89,12 +89,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Kath\projects\MTRN2500-ass2\MTRN2500-ass2\include;G:\MTRN2500-ass2\include;C:\Users\Student\Desktop\MTRN2500-ass2\include;C:\Users\Student\Desktop\kathkatie\MTRN2500-ass2\include;G:\kathkatie\MTRN2500-ass2\include;C:\Users\Student\source\repos\Assssss2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\MTRN2500-ass2\include;G:\MTRN2500-ass2\include;C:\Users\Student\Desktop\MTRN2500-ass2\include;C:\Users\Student\Desktop\kathkatie\MTRN2500-ass2\include;G:\kathkatie\MTRN2500-ass2\include;C:\Users\Student\source\repos\Assssss2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\Kath\projects\MTRN2500-ass2\MTRN2500-ass2\lib;G:\MTRN2500-ass2\lib;C:\Users\Student\Desktop\MTRN2500-ass2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\MTRN2500-ass2\lib;G:\MTRN2500-ass2\lib;C:\Users\Student\Desktop\MTRN2500-ass2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glu32.lib; glut32.lib; opengl32.lib; kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

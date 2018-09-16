@@ -88,6 +88,7 @@ void TrapPrism::draw()
 
 }
 
+
 double TrapPrism::GetX()
 {
 	return al;
@@ -98,22 +99,42 @@ double TrapPrism::GetY()
 	return bl;
 }
 
-double TrapPrism::GetZ()
+double TrapPrism::GetDepth()
 {
 	return dl;
 }
 
-void TrapPrism::SetX(double xx)
+double TrapPrism::GetHeight()
 {
-	al = xx;
+	return hl;
 }
 
-void TrapPrism::SetY(double yy)
+double TrapPrism::GetOffset()
 {
-	bl = yy;
+	return os;
 }
 
-void TrapPrism::SetZ(double zz)
+void TrapPrism::SetA(double aa)
 {
-	dl = zz;
+	al = aa;
+}
+
+void TrapPrism::SetB(double bb)
+{
+	bl = bb;
+}
+
+void TrapPrism::SetDepth(double dd)
+{
+	dl = dd;
+}
+
+void TrapPrism::SetHeight(double hh)
+{
+	hl = hh;
+}
+
+void TrapPrism::SetOffset(double oo)
+{
+	os = oo;
 }

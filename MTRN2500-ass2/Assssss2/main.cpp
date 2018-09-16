@@ -317,13 +317,8 @@ void idle() {
 					VehicleModel vm;
 					vm.remoteID = 0;
 
-					//
-					// student code goes here
 					std::vector<Shape*>ListShape = dynamic_cast<MyVehicle*>(vehicle)->getShapes();
 					for (int i = 0; i < ListShape.size(); i++) {
-					
-					//VehicleModel vm = ((MyVehicle*)vehicle)->GetModel();
-					//model.shapes.pushback(shapes)
 
 					ShapeInit vehicle;
 
@@ -336,15 +331,36 @@ void idle() {
 					vehicle.rgb[2] = ListShape[i]->getBlue();
 
 
-					if (dynamic_cast <RecPrism *> (ListShape[i])){
-						vehicle.params.rect.xlen = ListShape[i]->getX();
-						vehicle.params.rect.ylen = ListShape[i]->getY();
-						vehicle.params.rect.zlen = ListShape[i]->getZ();
+					if (dynamic_cast <RecPrism *> (ListShape[i]) != nullptr){
+						vehicle.type = RECTANGULAR_PRISM;
+						vehicle.params.rect.xlen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetX();
+						vehicle.params.rect.ylen = (float)dynamic_cast<RecPrism*>ListShape[i]->GetY();
+						vehicle.params.rect.zlen = (float)dynamic_cast<RecPrism*>ListShape[i]->GetZ();
 					}
-
+					else if (dynamic_cast <TriPrism *> (ListShape[i]) != nullptr) {
+						vehicle.type = TRIANGULAR_PRISM;
+						vehicle.params.tri.alen = (float)dynamic_cast<TriPrism*>ListShape[i]->GetX();
+						vehicle.params.tri.blen = (float)dynamic_cast<TriPrism*>ListShape[i]->GetY();
+						vehicle.params.tri.depth = (float)dynamic_cast<TriPrism*>ListShape[i]->GetZ();
+						vehicle.params.tri.angle = (float)dynamic_cast<TriPrism*>ListShape[i]->GetAngle();
 					}
-					
-
+					else if (dynamic_cast <TrapPrism *> (ListShape[i]) != nullptr) {
+						vehicle.type = TRAPEZOIDAL_PRISM;
+						vehicle.params.trap.alen = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetA();
+						vehicle.params.trap.blen = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetB();
+						vehicle.params.trap.depth = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetDepth();
+						vehicle.params.trap.height = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetHeight();
+						vehicle.params.trap.aoff = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetOffset();
+					}
+					else(dynamic_cast <Cylinder *> (ListShape[i]) != nullptr) {
+						vehicle.type = CYLINDER;
+						vehicle.params.cyl.radius = (float)dynamic_cast<Cylinder*>ListShape[i]->GetR();
+						vehicle.params.cyl.depth = (float)dynamic_cast<Cylinder*>ListShape[i]->GetL();
+						vehicle.params.cyl.isRolling = (float)dynamic_cast<Cylinder*>ListShape[i]->GetisRolling();
+						vehicle.params.cyl.isSteering = (float)dynamic_cast<Cylinder*>ListShape[i]->GetisSteering();
+					}
+					vm.shapes.push_back(vehicle);
+					}
 					RemoteDataManager::Write(GetVehicleModelStr(vm));
 				}
 			}
@@ -394,7 +410,7 @@ void idle() {
 						//sh = new Wheel (length, radius, isRolling, isSteering);
 						vm.shapes.push_back(it);
 						int k = 0;
-						for (k = 0; k < vm.shapes.size(); k++) {
+						for (k = 0; k < models.size(); k++) {
 							for (i = 0; i < vm.shapes.size(); i++) {
 
 								if (vm.shapes[i].type == CYLINDER) {
@@ -482,7 +498,6 @@ void idle() {
 
 							}
 						}
-					}
 						
 						/*for (std::vector<ShapeInit>::iterator it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
 							//for (int i = 0; i < vm.shapes.size(); i++)

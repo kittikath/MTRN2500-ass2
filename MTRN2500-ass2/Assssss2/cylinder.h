@@ -27,8 +27,8 @@ public:
 	void wheelSteering();
 	bool isRolling;
 	bool isSteering;
-	double GetX();
-	double GetY();
+	double GetR();
+	double GetL();
 	bool getisrolling();
 	bool getissteering();
 	void SetX(double xx);

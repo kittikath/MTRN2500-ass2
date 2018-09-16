@@ -10,7 +10,7 @@
 
 using namespace std;
 
-TrapPrism::TrapPrism(float a, float b, float d, float h, float offset)
+TrapPrism::TrapPrism(float a, float b, float d, float h, float offset) {
  	// In the constructor the parameters given are converted into known variables
     al = a;		
     bl = b;		
@@ -82,11 +82,11 @@ void TrapPrism::draw() {
 }
 
 // The Get functions are used to retrieve parameters locally initialised
-double TrapPrism::GetX() {
+double TrapPrism::GetA() {
 	return al;
 }
 
-double TrapPrism::GetY() {
+double TrapPrism::GetB() {
 	return bl;
 }
 

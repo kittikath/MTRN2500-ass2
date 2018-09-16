@@ -335,33 +335,36 @@ void idle() {
 					vehicle.rgb[2] = ListShape[i]->getBlue();
 
 
-					if (dynamic_cast <RecPrism *> (ListShape[i])){
-						vehicle.params.rect.xlen = ListShape[i]->GetX();
-						vehicle.params.rect.ylen = ListShape[i]->GetY();
-						vehicle.params.rect.zlen = ListShape[i]->GetZ();
+					if (dynamic_cast <RecPrism *> (ListShape[i]) != nullptr) {
+						vehicle.type = RECTANGULAR_PRISM;
+						vehicle.params.rect.xlen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetX();
+						vehicle.params.rect.ylen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetY();
+						vehicle.params.rect.zlen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetZ();
 					}
-					if (dynamic_cast <TriPrism *> (ListShape[i])) {
-						vehicle.params.tri.alen = ListShape[i]->GetX();
-						vehicle.params.tri.blen = ListShape[i]->GetY();
-						vehicle.params.tri.depth = ListShape[i]->GetZ();
-						vehicle.params.tri.angle = ListShape[i]->GetAngle();
+					else if (dynamic_cast <TriPrism *> (ListShape[i]) != nullptr) {
+						vehicle.type = TRIANGULAR_PRISM;
+						vehicle.params.tri.alen = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetX();
+						vehicle.params.tri.blen = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetY();
+						vehicle.params.tri.depth = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetZ();
+						vehicle.params.tri.angle = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetAngle();
 					}
-					if (dynamic_cast <TrapPrism *> (ListShape[i])) {
-						vehicle.params.trap.alen = ListShape[i]->GetX();
-						vehicle.params.trap.blen = ListShape[i]->GetY();
-						vehicle.params.trap.depth = ListShape[i]-GetDepth();
-						vehicle.params.trap.height = ListShape[i]->GetHeight();
-						vehicle.params.trap.aoff = ListShape[i]->GetOffset();
+					else if (dynamic_cast <TrapPrism *> (ListShape[i]) != nullptr) {
+						vehicle.type = TRAPEZOIDAL_PRISM;
+						vehicle.params.trap.alen = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetA();
+						vehicle.params.trap.blen = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetB();
+						vehicle.params.trap.depth = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetDepth();
+						vehicle.params.trap.height = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetHeight();
+						vehicle.params.trap.aoff = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetOffset();
 					}
-					if (dynamic_cast <Cylinder *> (ListShape[i])) {
-						vehicle.params.cyl.radius = ListShape[i]->GetX();
-						vehicle.params.cyl.depth = ListShape[i]->GetY();
-						vehicle.params.cyl.isRolling = ListShape[i]->getisrolling();
-						vehicle.params.cyl.isSteering = ListShape[i]->getissteering();
+					else if (dynamic_cast <Cylinder *> (ListShape[i]) != nullptr) {
+						vehicle.type = CYLINDER;
+						vehicle.params.cyl.radius = (float)dynamic_cast<Cylinder*>(ListShape[i])->GetR();
+						vehicle.params.cyl.depth = (float)dynamic_cast<Cylinder*>(ListShape[i])->GetL();
+						vehicle.params.cyl.isRolling = (float)dynamic_cast<Cylinder*>(ListShape[i])->getisrolling();
+						vehicle.params.cyl.isSteering = (float)dynamic_cast<Cylinder*>(ListShape[i])->getissteering();
 					}
+					vm.shapes.push_back(vehicle);
 					}
-					
-
 					RemoteDataManager::Write(GetVehicleModelStr(vm));
 				}
 			}
@@ -378,6 +381,7 @@ void idle() {
 			vs.steering = vehicle->getSteering();
 			RemoteDataManager::Write(GetVehicleStateStr(vs));
 		}
+
 
 		// if we're still connected, receive and handle response messages from the server
 		if (RemoteDataManager::IsConnected()) {

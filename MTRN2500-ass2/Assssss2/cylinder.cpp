@@ -58,10 +58,10 @@ void Cylinder::setRolling(double speed_) {
 }
 
 // The Get functions are used to retrieve parameters locally initialised
-double Cylinder::GetX() {
+double Cylinder::GetR() {
 	return radius;
 }
-double Cylinder::GetY() {
+double Cylinder::GetL() {
 	return length;
 }
 bool Cylinder::getisrolling() {

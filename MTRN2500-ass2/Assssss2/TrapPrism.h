@@ -20,8 +20,8 @@ public:
     TrapPrism(float a, float b, float d, float h, float offset);
     ~TrapPrism() = default;
     void draw();
-	double GetX();
-	double GetY();
+	double GetA();
+	double GetB();
 	double GetDepth();
 	double GetHeight();
 	double GetOffset();

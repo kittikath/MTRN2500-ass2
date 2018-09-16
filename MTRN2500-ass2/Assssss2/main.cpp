@@ -319,11 +319,11 @@ void idle() {
 					VehicleModel vm;
 					vm.remoteID = 0;
 
-					//
 					// student code goes here
 					std::vector<Shape*>ListShape = dynamic_cast<MyVehicle*>(vehicle)->getShapes();
+					//iterate through vector ListShape created in constructor
 					for (int i = 0; i < ListShape.size(); i++) {
-
+					//ShapeInit is a struct with shape parameters and info
 					ShapeInit vehicle;
 
 					vehicle.xyz[0] = ListShape[i]->getX();
@@ -334,7 +334,9 @@ void idle() {
 					vehicle.rgb[1] = ListShape[i]->getGreen();
 					vehicle.rgb[2] = ListShape[i]->getBlue();
 
-
+					//access parameters of each shape 
+					//need to dynamic cast to convert shape pointers to pointers made in each class
+					//compare parameters in message to parameters made in each function for shapes
 					if (dynamic_cast <RecPrism *> (ListShape[i]) != nullptr) {
 						vehicle.type = RECTANGULAR_PRISM;
 						vehicle.params.rect.xlen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetX();
@@ -382,42 +384,35 @@ void idle() {
 			RemoteDataManager::Write(GetVehicleStateStr(vs));
 		}
 
-
 		// if we're still connected, receive and handle response messages from the server
 		if (RemoteDataManager::IsConnected()) {
 			std::vector<RemoteMessage> msgs = RemoteDataManager::Read();
 			for (unsigned int i = 0; i < msgs.size(); i++) {
 
 				RemoteMessage msg = msgs[i];
-				//cout << msg.payload << endl;
 
 				switch (msg.type) {
-					// new models
+				// new models
 				case 'M':
 				{
 					std::vector<VehicleModel> models = GetVehicleModels(msg.payload);
 					for (unsigned int j = 0; j < models.size(); j++) {
 						VehicleModel vm = models[j];
 
-						// uncomment the line below to create remote vehicles
+						//Uncomment the line below to create remote vehicles
 						otherVehicles[vm.remoteID] = new MyVehicle();
-						//std::vector<ShapeInit>::iterator it;
+					    //Creater pointer in ShapeInit to iterate through shape info
 						ShapeInit it;
-						
-						//
-						// more student code goes here
-						//
-						
+						//Creater counters
 						int i;
-						
+						int k = 0;
 						Shape * sh = NULL;
 						const double time = 0.042;
-						//sh = new Wheel (length, radius, isRolling, isSteering);
 						vm.shapes.push_back(it);
-						int k = 0;
+						//create loop to search for every object on server
+						//access every function to print each feature
 						for (k = 0; k < models.size(); k++) {
 							for (i = 0; i < vm.shapes.size(); i++) {
-
 								if (vm.shapes[i].type == CYLINDER) {
 									sh = new Cylinder(
 										vm.shapes[i].params.cyl.radius,
@@ -503,51 +498,8 @@ void idle() {
 
 							}
 						}
-						
-						/*for (std::vector<ShapeInit>::iterator it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
-							//for (int i = 0; i < vm.shapes.size(); i++)
-							// vm.shapes[i].type
 
-							//if (vm.shapes[1].type == 1) 
-							//vm.shapes[i].params.rect.xlen;
-							//vm.shapes[i].rotationvm.shapes[i].xyz[0-2]
-
-							//vm shapes = obtain vector shape in it
-
-							if (it->type == RECTANGULAR_PRISM) {
-							RecPrism* r = new RecPrism(it->params.rect.xlen, it->params.rect.ylen, it->params.rect.zlen);
-							r->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
-							r->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-							otherVehicles[vm.remoteID]->addShape(r);
-
-							}
-							else if (it->type == TRIANGULAR_PRISM) {
-							TriPrism* t = new TriPrism(it->params.tri.alen, it->params.tri.blen, it->params.tri.angle, it->params.tri.depth);
-							t->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
-							t->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-							otherVehicles[vm.remoteID]->addShape(t);
-
-							}
-							else if (it->type == TRAPEZOIDAL_PRISM) {
-							TrapPrism* trap = new TrapPrism(it->params.trap.alen, it->params.trap.blen, it->params.trap.height, it->params.trap.aoff, it->params.trap.depth);
-							trap->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
-							trap->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-							otherVehicles[vm.remoteID]->addShape(trap);
-
-							}else if(it->type == CYLINDER){
-							Cylinder* c = new Cylinder(it->params.cyl.radius, it->params.cyl.depth, it->params.cyl.isRolling, it->params.cyl.isSteering);
-							c->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
-							c->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-							otherVehicles[vm.remoteID]->addShape(c);
-
-							}
-
-							
-
-						}*/
 					}
-
-
 					break;
 				}
 

@@ -5,23 +5,19 @@
 
 using namespace std;
 
-//double angle = 0;
 
 MyVehicle::MyVehicle()
 {
 }
 
 MyVehicle::MyVehicle(float x_, float y_, float z_) {
-	//X = x_;
-	//Y = y_;
-	//Z = z_;
-
 	setX(x_);
 	setY(y_);
 	setZ(z_);
 
-		//void addShape(Shape * shape);
-
+		//Draw Body of Vehicle
+		//Addshape function executes the parameters given
+		//Sets colour and position of each shape respect to same coordinates
 		RecPrism *CarRec = new RecPrism(20, 4, 10);
 		CarRec->setPosition(0, 3, 0);
 		CarRec->setColor(1, 0, 0);
@@ -37,6 +33,7 @@ MyVehicle::MyVehicle(float x_, float y_, float z_) {
 		CarTrap->setColor(0, 1, 1);
 		addShape(CarTrap);
 
+		//Draw wheels of car, last 2 parameters give boolean if function is called in server
 		Cylinder *Wheel1 = new Cylinder(2, 4, TRUE, TRUE);
 		Wheel1->setPosition(6.5, 0, 5.5);
 		Wheel1->setColor(0.5, 0.5, 0.5);
@@ -55,16 +52,9 @@ MyVehicle::MyVehicle(float x_, float y_, float z_) {
 		Cylinder *Wheel4 = new Cylinder(2, 4, TRUE, FALSE);
 		Wheel4->setPosition(-6.5, 0, 5.5);
 		Wheel4->setColor(0.5, 0.5, 0.5);
-//		Wheel4->setRotation(steering);
 		addShape(Wheel4);
 
 }
-
-/*
-void MyVehicle::addShape(Shape * shape) {
-	addShape(shape);
-}
-*/
 
 void MyVehicle::draw()
 {
@@ -72,22 +62,21 @@ void MyVehicle::draw()
 	glPushMatrix();
 	positionInGL();
 	setColorInGL();
-
+		//Draw motion of wheels through vector *wheel to access steering and rolling in cylinder
 		for (int i = 0; i < shapes.size(); i++)
 		{
 			Cylinder *wheel = dynamic_cast <Cylinder *>(shapes[i]);
 
 			if (wheel != nullptr && wheel->isSteering == TRUE)
 			{
-				wheel->setRotation(steering);
+				//if wheel steer function is activated, steer
+				wheel->setRotation(steering); 
 			}
 			
 			if (wheel != nullptr && wheel->isRolling == TRUE)
 			{
-				//std::cout << "angle" << angle << std::endl;
+				//if wheel rolling function is activated, roll
 				wheel->setRolling(speed);
-				//glRotated(speed / 2, 0, 0, 1);
-
 			}
 			
 			shapes[i]->draw();

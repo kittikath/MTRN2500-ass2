@@ -1,3 +1,5 @@
+// Code written by Group 30: Kate O'Sullivan (z5161671) and Kath-Lin Han (z5165314)
+
 
 #include <iostream>
 #include <cstdlib>
@@ -334,11 +336,29 @@ void idle() {
 
 
 					if (dynamic_cast <RecPrism *> (ListShape[i])){
-						vehicle.params.rect.xlen = ListShape[i]->getX();
-						vehicle.params.rect.ylen = ListShape[i]->getY();
-						vehicle.params.rect.zlen = ListShape[i]->getZ();
+						vehicle.params.rect.xlen = ListShape[i]->GetX();
+						vehicle.params.rect.ylen = ListShape[i]->GetY();
+						vehicle.params.rect.zlen = ListShape[i]->GetZ();
 					}
-
+					if (dynamic_cast <TriPrism *> (ListShape[i])) {
+						vehicle.params.tri.alen = ListShape[i]->GetX();
+						vehicle.params.tri.blen = ListShape[i]->GetY();
+						vehicle.params.tri.depth = ListShape[i]->GetZ();
+						vehicle.params.tri.angle = ListShape[i]->GetAngle();
+					}
+					if (dynamic_cast <TrapPrism *> (ListShape[i])) {
+						vehicle.params.trap.alen = ListShape[i]->GetX();
+						vehicle.params.trap.blen = ListShape[i]->GetY();
+						vehicle.params.trap.depth = ListShape[i]-GetDepth();
+						vehicle.params.trap.height = ListShape[i]->GetHeight();
+						vehicle.params.trap.aoff = ListShape[i]->GetOffset();
+					}
+					if (dynamic_cast <Cylinder *> (ListShape[i])) {
+						vehicle.params.cyl.radius = ListShape[i]->GetX();
+						vehicle.params.cyl.depth = ListShape[i]->GetY();
+						vehicle.params.cyl.isRolling = ListShape[i]->getisrolling();
+						vehicle.params.cyl.isSteering = ListShape[i]->getissteering();
+					}
 					}
 					
 
@@ -391,7 +411,7 @@ void idle() {
 						//sh = new Wheel (length, radius, isRolling, isSteering);
 						vm.shapes.push_back(it);
 						int k = 0;
-						for (k = 0; k < 20; k++) {
+						for (k = 0; k < models.size(); k++) {
 							for (i = 0; i < vm.shapes.size(); i++) {
 
 								if (vm.shapes[i].type == CYLINDER) {

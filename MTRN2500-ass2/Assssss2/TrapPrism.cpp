@@ -1,4 +1,6 @@
-﻿#include "TrapPrism.h"
+﻿// Code written by Group 30: Kate O'Sullivan (z5161671) and Kath-Lin Han (z5165314)
+
+#include "TrapPrism.h"
 
 #include <Windows.h>
 #include <tchar.h>
@@ -8,112 +10,116 @@
 
 using namespace std;
 
-TrapPrism::TrapPrism(float a, float b, float d, float h, float offset) {
-    al = a; // a length (length along base)
-    bl = b; // b length (length of side)
-    dl = d; // depth
-    hl = h; //height
-    os = offset; // offset
+TrapPrism::TrapPrism(float a, float b, float d, float h, float offset)
+ 	// In the constructor the parameters given are converted into known variables
+    al = a;		
+    bl = b;		
+    dl = d;			
+    hl = h;		
+    os = offset; 
 }
 
-void TrapPrism::draw()
-{
-	float diff = (al - bl) / 2;
+// Function that draws arbitrary trapezium prism
+void TrapPrism::draw() {
+	// difference in length of bottom and top base needed to translate top base to left
+	// so with offset = 0, the left edges of the bases are aligned (same x-coordinate)
+	float diff = (al - bl) / 2;  
 	
-	glPushMatrix();
-	positionInGL();
-	setColorInGL();
+	glPushMatrix(); // Ensures that the trapezium will be drawn from the origin
+	positionInGL(); // Moves the entirety of the shape to a new origin
+	setColorInGL(); // Changes the colour of the prism
 
-	//bottom face :)
+	// Bottom Face, made up of four points, each point with an x, y and z coordinate
 	glBegin(GL_QUADS);
-	//	glColor3d(1, 0, 0);
 		glVertex3f(-al / 2, 0, dl / 2);
 		glVertex3f(al / 2, 0, dl / 2);
 		glVertex3f(al / 2, 0, -dl / 2);
 		glVertex3f(-al / 2, 0, -dl / 2);
 	glEnd();
 
-	// top face
-
+	// Top Face
 	glBegin(GL_QUADS);
-	//	glColor3d(1, 0, 0);
 		glVertex3f((-bl / 2) - diff + os, hl, dl / 2);
 		glVertex3f((bl / 2) - diff + os, hl, dl / 2);
 		glVertex3f((bl / 2) - diff + os, hl, -dl / 2);
 		glVertex3f((-bl / 2) - diff + os, hl, -dl / 2);
 	glEnd();
 
-	// front face
-
+	// Front Face
 	glBegin(GL_QUADS);
-	//	glColor3d(0, 1, 0);
 		glVertex3f((-al / 2), 0, dl / 2);
 		glVertex3f((-bl / 2) - diff + os, hl, dl / 2);
 		glVertex3f((bl / 2) - diff + os, hl, dl / 2);
 		glVertex3f((al / 2), 0, dl / 2);
 	glEnd();
 
-	// back face
-
+	// Back Face
 	glBegin(GL_QUADS);
-	//	glColor3d(0, 1, 0);
 		glVertex3f((-al / 2), 0, -dl / 2);
 		glVertex3f((-bl / 2) - diff + os, hl, -dl / 2);
 		glVertex3f((bl / 2) - diff + os, hl, -dl / 2);
 		glVertex3f((al / 2), 0, -dl / 2); 
 	glEnd();
 
-	// left side face
-
+	// Left Side Face
 	glBegin(GL_QUADS);
-	//	glColor3d(0, 0, 1);
 		glVertex3f((-al / 2), 0, dl / 2);
 		glVertex3f((-al / 2), 0, -dl / 2);
 		glVertex3f((-bl / 2) - diff + os, hl, -dl / 2);
 		glVertex3f((-bl / 2) - diff + os, hl, dl / 2);
 	glEnd();
 
-	// right side face
-
+	// Right Side Face
 	glBegin(GL_QUADS);
-	//	glColor3d(0, 0, 1);
 		glVertex3f((al / 2), 0, dl / 2);
 		glVertex3f((al / 2), 0, -dl / 2);
 		glVertex3f((bl / 2) - diff + os, hl, -dl / 2);
 		glVertex3f((bl / 2) - diff + os, hl, dl / 2);
 	glEnd();
 
-
+	// Resets the coordinate system so as to not affect other external functions
 	glPopMatrix();
-
 }
 
-double TrapPrism::GetX()
-{
+// The Get functions are used to retrieve parameters locally initialised
+double TrapPrism::GetX() {
 	return al;
 }
 
-double TrapPrism::GetY()
-{
+double TrapPrism::GetY() {
 	return bl;
 }
 
-double TrapPrism::GetZ()
-{
+double TrapPrism::GetDepth() {
 	return dl;
 }
 
-void TrapPrism::SetX(double xx)
-{
+double TrapPrism::GetHeight() {
+	return hl;
+}
+
+double TrapPrism::GetOffset() {
+	return os;
+}
+
+// The Set functions are used to set parameters
+// Primarily used when sending vehicle and receiving other vehicles from server
+void TrapPrism::SetX(double xx) {
 	al = xx;
 }
 
-void TrapPrism::SetY(double yy)
-{
+void TrapPrism::SetY(double yy) {
 	bl = yy;
 }
 
-void TrapPrism::SetZ(double zz)
-{
-	dl = zz;
+void TrapPrism::SetDepth(double dd) {
+	dl = dd;
+}
+
+void TrapPrism::SetHeight(double hh) {
+	hl = hh;
+}
+
+void TrapPrism::SetOffset(double oo) {
+	os = oo;
 }

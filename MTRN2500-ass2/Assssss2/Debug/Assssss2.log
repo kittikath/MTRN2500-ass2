@@ -1,2 +1,36 @@
-﻿  cylinder.cpp
-  Assssss2.vcxproj -> E:\MTRN2500-ass2\Debug\Assssss2.exe
+﻿  main.cpp
+e:\mtrn2500-ass2\assssss2\main.cpp(147): warning C4018: '<': signed/unsigned mismatch
+e:\mtrn2500-ass2\assssss2\main.cpp(323): warning C4018: '<': signed/unsigned mismatch
+e:\mtrn2500-ass2\assssss2\main.cpp(337): error C2039: 'GetX': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(338): error C2039: 'GetY': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(339): error C2039: 'GetZ': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(342): error C2039: 'GetX': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(343): error C2039: 'GetY': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(344): error C2039: 'GetZ': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(345): error C2039: 'GetAngle': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(348): error C2039: 'GetX': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(349): error C2039: 'GetY': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(350): error C3861: 'GetDepth': identifier not found
+e:\mtrn2500-ass2\assssss2\main.cpp(351): error C2039: 'GetHeight': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(352): error C2039: 'GetOffset': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(355): error C2039: 'GetX': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(356): error C2039: 'GetY': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(357): error C2039: 'getisrolling': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(358): error C2039: 'getissteering': is not a member of 'Shape'
+  e:\mtrn2500-ass2\assssss2\shape.hpp(6): note: see declaration of 'Shape'
+e:\mtrn2500-ass2\assssss2\main.cpp(412): warning C4018: '<': signed/unsigned mismatch
+e:\mtrn2500-ass2\assssss2\main.cpp(413): warning C4018: '<': signed/unsigned mismatch

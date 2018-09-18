@@ -49,7 +49,9 @@
 #include "TriPrism.h"
 #include "cylinder.h"
 #include "MyVehicle.h"
-//#include "Wheel.h"
+
+//include header file to process input of XBox controller
+#include "XBoxController.h"
 
 void display();
 void reshape(int width, int height);
@@ -250,47 +252,58 @@ double getTime()
 }
 
 void idle() {
+	//toggle pursuit camera when left shoulder is pressed
+	if(controller.PressedLeftShoulder() == 1){
+		Camera::get()->togglePursuitMode;
+	}
+	//set camera to origin if right shoulder is pressed
+	if(conroller.PressedRightShoulder() == 1){
+		Camera::get()->jumpToOrigin;
+	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('a')) {
+
+
+
+	if (KeyManager::get()->isAsciiKeyPressed('a') || (controller.PressedX() == 1)){
 		Camera::get()->strafeLeft();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('c')) {
+	if (KeyManager::get()->isAsciiKeyPressed('c') || (controller.PressedBack() == 1)){
 		Camera::get()->strafeDown();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('d')) {
+	if (KeyManager::get()->isAsciiKeyPressed('d') || (controller.PressedB() == 1)) {
 		Camera::get()->strafeRight();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('s')) {
+	if (KeyManager::get()->isAsciiKeyPressed('s') || (controller.PressedA() == 1)) {
 		Camera::get()->moveBackward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('w')) {
+	if (KeyManager::get()->isAsciiKeyPressed('w') || (controller.PressedY() == 1)) {
 		Camera::get()->moveForward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed(' ')) {
+	if (KeyManager::get()->isAsciiKeyPressed(' ') || (controller.PressedStart() == 1)) {
 		Camera::get()->strafeUp();
 	}
 
 	speed = 0;
 	steering = 0;
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT) || (controller.PressedLeftDpad() == 1)) {
 		steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT) || (controller.PressedRightDpad() == 1)) {
 		steering = Vehicle::MAX_RIGHT_STEERING_DEGS * -1;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP) || (controller.PressedUpDpad() == 1)) {
 		speed = Vehicle::MAX_FORWARD_SPEED_MPS;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN) || (controller.PressedDownDpad() == 1)) {
 		speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
 	}
 
@@ -337,11 +350,14 @@ void idle() {
 					//access parameters of each shape 
 					//need to dynamic cast to convert shape pointers to pointers made in each class
 					//compare parameters in message to parameters made in each function for shapes
+					RecPrism* rect = dynamic_cast<RecPrism*>(ListShape[i]);
 					if (dynamic_cast <RecPrism *> (ListShape[i]) != nullptr) {
 						vehicle.type = RECTANGULAR_PRISM;
 						vehicle.params.rect.xlen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetX();
 						vehicle.params.rect.ylen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetY();
 						vehicle.params.rect.zlen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetZ();
+					}
+
 					}
 					else if (dynamic_cast <TriPrism *> (ListShape[i]) != nullptr) {
 						vehicle.type = TRIANGULAR_PRISM;
@@ -349,7 +365,6 @@ void idle() {
 						vehicle.params.tri.blen = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetY();
 						vehicle.params.tri.depth = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetZ();
 						vehicle.params.tri.angle = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetAngle();
-					}
 					else if (dynamic_cast <TrapPrism *> (ListShape[i]) != nullptr) {
 						vehicle.type = TRAPEZOIDAL_PRISM;
 						vehicle.params.trap.alen = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetA();

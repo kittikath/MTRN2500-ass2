@@ -7,23 +7,23 @@
 #include <map>
 
 #ifdef __APPLE__
-	#include <OpenGL/gl.h>
-	#include <OpenGL/glu.h>
-	#include <GLUT/glut.h>
-	#include <unistd.h>
-	#include <sys/time.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+#include <unistd.h>
+#include <sys/time.h>
 #elif defined(WIN32)
-	#include <Windows.h>
-	#include <tchar.h>
-	#include <GL/gl.h>
-	#include <GL/glu.h>
-	#include <GL/glut.h>
+#include <Windows.h>
+#include <tchar.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
 #else
-	#include <GL/gl.h>
-	#include <GL/glu.h>
-	#include <GL/glut.h>
-	#include <unistd.h>
-	#include <sys/time.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#include <unistd.h>
+#include <sys/time.h>
 #endif
 
 
@@ -33,16 +33,21 @@
 
 #include "Shape.hpp"
 #include "Vehicle.hpp"
-#include "RecPrism.h"
-#include "TrapPrism.h"
-#include "TriPrism.h"
-#include "cylinder.h"
-#include "MyVehicle.h"
 
 #include "RemoteDataManager.hpp"
 #include "Messages.hpp"
 #include "HUD.hpp"
 #include "ObstacleManager.hpp"
+
+
+#include "Shape.hpp"
+#include "Vehicle.hpp"
+#include "RecPrism.h"
+#include "TrapPrism.h"
+#include "TriPrism.h"
+#include "cylinder.h"
+#include "MyVehicle.h"
+//#include "Wheel.h"
 
 void display();
 void reshape(int width, int height);
@@ -111,15 +116,15 @@ int main(int argc, char ** argv) {
 	//   with the name of the class you want to show as the current 
 	//   custom vehicle.
 	// -------------------------------------------------------------------------
-
+	// calling MyVehicle function to print the car at 0,0,0
 	vehicle = new MyVehicle(0,0,0);
 
 
 	// add test obstacles
-	ObstacleManager::get()->addObstacle(Obstacle(10,10, 1));
-	ObstacleManager::get()->addObstacle(Obstacle(10,-10, 1));
-	ObstacleManager::get()->addObstacle(Obstacle(-10,10, 1));
-	ObstacleManager::get()->addObstacle(Obstacle(-10,-10, 1));
+	ObstacleManager::get()->addObstacle(Obstacle(10, 10, 1));
+	ObstacleManager::get()->addObstacle(Obstacle(10, -10, 1));
+	ObstacleManager::get()->addObstacle(Obstacle(-10, 10, 1));
+	ObstacleManager::get()->addObstacle(Obstacle(-10, -10, 1));
 
 	// add test goal
 	GoalState g;
@@ -137,6 +142,7 @@ int main(int argc, char ** argv) {
 	return 0;
 }
 
+//drawing reference points within the virtual world
 void drawGoals()
 {
 	for (int i = 0; i < goals.size(); ++i) {
@@ -150,53 +156,13 @@ void drawGoals()
 		// make first goal purple
 		if (i == 0)
 			glColor3f(1, .3, 1);
+		// white
 		else
 			glColor3f(1, 1, 1);
 
 		gluCylinder(quad, .5, .5, 10, 5, 1);
 		glPopMatrix();
 	}
-}
-/*
-ASSIGNMENT PART2
-	connect to server
-	uncomment the lines necessary
-	wheels that roll when driving
-	front wheels steer
-	send car ot server - through message function
-	student code section
-	sending vehicle model structure inside myvehicleadd shape function
-	need tto package that info and display in ShapeInIt structure
-	speed and steering two protected functions in vehicle
-	need to rotation about the right axis
-*/
-void TestDiplay() {
-
-		RecPrism Rect(10, 10, 10);
-		Rect.setPosition(20, 0, 20);
-		Rect.setRotation(45);
-		Rect.setColor(1, 0, 0);
-		Rect.draw();
-
-		TriPrism Trip(20, 5, 3, 90);
-		Trip.setPosition(-20, 0, 20);
-		Trip.setRotation(45);
-		Trip.setColor(0, 1, 0);
-		Trip.draw();
-
-		TrapPrism Trap(20, 10, 5, 8, 3);  // a, b, d, h, o
-		Trap.setPosition(-20,0,-20);
-		Trap.setRotation(0);
-		Trap.setColor(0,0,1);
-		Trap.draw();
-
-		Cylinder cyl(5, 10, 20);
-		cyl.setPosition(20, 0, -20);
-		cyl.setRotation(90);
-		cyl.setColor(1, 1, 1);
-		cyl.draw();
-
-
 }
 
 void display() {
@@ -210,7 +176,7 @@ void display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	if(Camera::get()->isPursuitMode() && vehicle != NULL) {
+	if (Camera::get()->isPursuitMode() && vehicle != NULL) {
 		double x = vehicle->getX(), y = vehicle->getY(), z = vehicle->getZ();
 		double dx = cos(vehicle->getRotation() * 3.141592765 / 180.0);
 		double dy = sin(vehicle->getRotation() * 3.141592765 / 180.0);
@@ -221,9 +187,9 @@ void display() {
 	Camera::get()->setLookAt();
 
 	Ground::draw();
-	
+
 	// draw other vehicles
-	for(std::map<int, Vehicle *>::iterator iter = otherVehicles.begin(); iter != otherVehicles.end(); ++iter) 
+	for (std::map<int, Vehicle *>::iterator iter = otherVehicles.begin(); iter != otherVehicles.end(); ++iter)
 		iter->second->draw();
 
 	// draw my vehicle
@@ -240,7 +206,7 @@ void display() {
 
 	// draw HUD
 	HUD::Draw();
-	TestDiplay();
+
 	glutSwapBuffers();
 };
 
@@ -269,7 +235,7 @@ double getTime()
 #if defined(WIN32)
 	LARGE_INTEGER freqli;
 	LARGE_INTEGER li;
-	if(QueryPerformanceCounter(&li) && QueryPerformanceFrequency(&freqli)) {
+	if (QueryPerformanceCounter(&li) && QueryPerformanceFrequency(&freqli)) {
 		return double(li.QuadPart) / double(freqli.QuadPart);
 	}
 	else {
@@ -313,7 +279,7 @@ void idle() {
 	steering = 0;
 
 	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
-		steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;   
+		steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;
 	}
 
 	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT)) {
@@ -329,20 +295,22 @@ void idle() {
 	}
 
 	// attempt to do data communications every 4 frames if we've created a local vehicle
-	if(frameCounter % 4 == 0 && vehicle != NULL) {
+	if (frameCounter % 4 == 0 && vehicle != NULL) {
 
 		// if not connected, attempt to connect every 2 seconds
-		if(!RemoteDataManager::IsConnected()) {
-			if(frameCounter % 120 == 0) {
-		
+		if (!RemoteDataManager::IsConnected()) {
+			if (frameCounter % 120 == 0) {
+
 				// erase other vehicles
-				for(std::map<int, Vehicle*>::iterator iter = otherVehicles.begin(); iter  != otherVehicles.end(); ++iter) {
+				for (std::map<int, Vehicle*>::iterator iter = otherVehicles.begin(); iter != otherVehicles.end(); ++iter) {
 					delete iter->second;
 				}
 				otherVehicles.clear();
 
 				// uncomment this line to connect to the robotics server.
 				RemoteDataManager::Connect("www.robotics.unsw.edu.au","18081");
+				//www.robotics.unsw.edu.au
+				//192.168.1.1
 
 				// on connect, let's tell the server what we look like
 				if (RemoteDataManager::IsConnected()) {
@@ -351,10 +319,52 @@ void idle() {
 					VehicleModel vm;
 					vm.remoteID = 0;
 
-					//
-					// student code goes here
-					//
+					std::vector<Shape*>ListShape = dynamic_cast<MyVehicle*>(vehicle)->getShapes();
+					//iterate through vector ListShape created in constructor
+					for (int i = 0; i < ListShape.size(); i++) {
+					//ShapeInit is a struct with shape parameters and info
+					ShapeInit vehicle;
 
+					vehicle.xyz[0] = ListShape[i]->getX();
+					vehicle.xyz[1] = ListShape[i]->getY();
+					vehicle.xyz[2] = ListShape[i]->getZ();
+					vehicle.rotation = ListShape[i]->getRotation();
+					vehicle.rgb[0] = ListShape[i]->getRed();
+					vehicle.rgb[1] = ListShape[i]->getGreen();
+					vehicle.rgb[2] = ListShape[i]->getBlue();
+
+
+					RecPrism *p1 = dynamic_cast
+					if (dynamic_cast <RecPrism *> (ListShape[i]) != nullptr){
+						vehicle.type = RECTANGULAR_PRISM;
+						vehicle.params.rect.xlen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetX();
+						vehicle.params.rect.ylen = (float)dynamic_cast<RecPrism*>ListShape[i]->GetY();
+						vehicle.params.rect.zlen = (float)dynamic_cast<RecPrism*>ListShape[i]->GetZ();
+					}
+					else if (dynamic_cast <TriPrism *> (ListShape[i]) != nullptr) {
+						vehicle.type = TRIANGULAR_PRISM;
+						vehicle.params.tri.alen = (float)dynamic_cast<TriPrism*>ListShape[i]->GetX();
+						vehicle.params.tri.blen = (float)dynamic_cast<TriPrism*>ListShape[i]->GetY();
+						vehicle.params.tri.depth = (float)dynamic_cast<TriPrism*>ListShape[i]->GetZ();
+						vehicle.params.tri.angle = (float)dynamic_cast<TriPrism*>ListShape[i]->GetAngle();
+					}
+					else if (dynamic_cast <TrapPrism *> (ListShape[i]) != nullptr) {
+						vehicle.type = TRAPEZOIDAL_PRISM;
+						vehicle.params.trap.alen = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetA();
+						vehicle.params.trap.blen = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetB();
+						vehicle.params.trap.depth = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetDepth();
+						vehicle.params.trap.height = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetHeight();
+						vehicle.params.trap.aoff = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetOffset();
+					}
+					else(dynamic_cast <Cylinder *> (ListShape[i]) != nullptr) {
+						vehicle.type = CYLINDER;
+						vehicle.params.cyl.radius = (float)dynamic_cast<Cylinder*>ListShape[i]->GetR();
+						vehicle.params.cyl.depth = (float)dynamic_cast<Cylinder*>ListShape[i]->GetL();
+						vehicle.params.cyl.isRolling = (float)dynamic_cast<Cylinder*>ListShape[i]->GetisRolling();
+						vehicle.params.cyl.isSteering = (float)dynamic_cast<Cylinder*>ListShape[i]->GetisSteering();
+					}
+					vm.shapes.push_back(vehicle);
+					}
 					RemoteDataManager::Write(GetVehicleModelStr(vm));
 				}
 			}
@@ -375,87 +385,229 @@ void idle() {
 		// if we're still connected, receive and handle response messages from the server
 		if (RemoteDataManager::IsConnected()) {
 			std::vector<RemoteMessage> msgs = RemoteDataManager::Read();
-			for(unsigned int i = 0; i < msgs.size(); i++ ) {
+			for (unsigned int i = 0; i < msgs.size(); i++) {
 
 				RemoteMessage msg = msgs[i];
 				//cout << msg.payload << endl;
 
-				switch(msg.type) {
+				switch (msg.type) {
 					// new models
-					case 'M':
-						{
-							std::vector<VehicleModel> models = GetVehicleModels(msg.payload);
-							for(unsigned int i = 0; i < models.size(); i++) {
-								VehicleModel vm = models[i];
-								
-								//uncomment the line below to create remote vehicles
-								otherVehicles[vm.remoteID] = new MyVehicle(0, 0, 0);
+				case 'M':
+				{
+					std::vector<VehicleModel> models = GetVehicleModels(msg.payload);
+					for (unsigned int j = 0; j < models.size(); j++) {
+						VehicleModel vm = models[j];
 
-								//
-								// more student code goes here
-								//
-							}
-							break;
-						}
+						// uncomment the line below to create remote vehicles
+						otherVehicles[vm.remoteID] = new MyVehicle();
+						//std::vector<ShapeInit>::iterator it;
+						ShapeInit it;
+						
+						//
+						// more student code goes here
+						//
+						
+						int i;
+						
+						Shape * sh = NULL;
+						const double time = 0.042;
+						//sh = new Wheel (length, radius, isRolling, isSteering);
+						vm.shapes.push_back(it);
+						int k = 0;
+						for (k = 0; k < models.size(); k++) {
+							for (i = 0; i < vm.shapes.size(); i++) {
 
-					// vehicle states
-					case 'S': 
-						{
-							std::vector<VehicleState> states = GetVehicleStates(msg.payload);
-							for(unsigned int i = 0; i < states.size(); i++) {
-								VehicleState vs = states[i];
+								if (vm.shapes[i].type == CYLINDER) {
+									sh = new Cylinder(
+										vm.shapes[i].params.cyl.radius,
+										vm.shapes[i].params.cyl.depth,
 
-								std::map<int, Vehicle*>::iterator iter = otherVehicles.find(vs.remoteID);
-								if(iter != otherVehicles.end()) {
-									Vehicle * veh = iter->second;
-									remoteDriver(veh, vs.x, vs.z, vs.rotation, vs.speed, vs.steering);
+										vm.shapes[i].params.cyl.isRolling,
+										vm.shapes[i].params.cyl.isSteering
+									);
+									sh->setPosition(
+										vm.shapes[i].xyz[0],
+										vm.shapes[i].xyz[1],
+										vm.shapes[i].xyz[2]
+									);
+									sh->setColor(
+										vm.shapes[i].rgb[0],
+										vm.shapes[i].rgb[1],
+										vm.shapes[i].rgb[2]
+									);
+									sh->setRotation(vm.shapes[i].rotation);
+									otherVehicles[vm.remoteID]->addShape(sh);
 								}
-							}
-							break;
-						}
 
-					// goal state
-					case 'G':
-						{
-							goals = GetGoals(msg.payload);
-							break;
-						}
-
-					// obstacle state
-					case 'O':
-						{
-							std::vector<ObstacleState> obs = GetObstacles(msg.payload);
-							for(unsigned int i = 0; i < obs.size(); i++) {
-								Obstacle o(obs[i].x, obs[i].z, obs[i].radius);
-								ObstacleManager::get()->addObstacle(o);
-							}
-							break;
-						}
-
-					// disconnect list
-					case 'D':
-						{
-							std::vector<int> disconnectedIDs = GetVehicleDisconnects(msg.payload);
-							for(unsigned int i = 0; i < disconnectedIDs.size(); i++) {
-								int id = disconnectedIDs[i];
-								std::map<int, Vehicle*>::iterator iter = otherVehicles.find(id);
-								if(iter != otherVehicles.end()) {
-									delete iter->second;
-									otherVehicles.erase(iter);
+								if (vm.shapes[i].type == RECTANGULAR_PRISM) {
+									sh = new RecPrism(
+										vm.shapes[i].params.rect.xlen,
+										vm.shapes[i].params.rect.ylen,
+										vm.shapes[i].params.rect.zlen
+									);
+									sh->setPosition(
+										vm.shapes[i].xyz[0],
+										vm.shapes[i].xyz[1],
+										vm.shapes[i].xyz[2]
+									);
+									sh->setColor(
+										vm.shapes[i].rgb[0],
+										vm.shapes[i].rgb[1],
+										vm.shapes[i].rgb[2]
+									);
+									sh->setRotation(vm.shapes[i].rotation);
+									otherVehicles[vm.remoteID]->addShape(sh);
 								}
-							}
-							break;
-						}
+								if (vm.shapes[i].type == TRIANGULAR_PRISM) {
+									sh = new TriPrism(
+										vm.shapes[i].params.tri.alen,
+										vm.shapes[i].params.tri.blen,
+										vm.shapes[i].params.tri.depth,
+										vm.shapes[i].params.tri.angle
+									);
+									sh->setPosition(
+										vm.shapes[i].xyz[0],
+										vm.shapes[i].xyz[1],
+										vm.shapes[i].xyz[2]
+									);
+									sh->setColor(
+										vm.shapes[i].rgb[0],
+										vm.shapes[i].rgb[1],
+										vm.shapes[i].rgb[2]
+									);
+									sh->setRotation(vm.shapes[i].rotation);
+									otherVehicles[vm.remoteID]->addShape(sh);
+								}
+								if (vm.shapes[i].type == TRAPEZOIDAL_PRISM) {
+									sh = new TrapPrism(
+										vm.shapes[i].params.trap.alen,
+										vm.shapes[i].params.trap.blen,
+										vm.shapes[i].params.trap.depth,
+										vm.shapes[i].params.trap.height,
+										vm.shapes[i].params.trap.aoff
+									);
+									sh->setPosition(
+										vm.shapes[i].xyz[0],
+										vm.shapes[i].xyz[1],
+										vm.shapes[i].xyz[2]
+									);
+									sh->setColor(
+										vm.shapes[i].rgb[0],
+										vm.shapes[i].rgb[1],
+										vm.shapes[i].rgb[2]
+									);
+									sh->setRotation(vm.shapes[i].rotation);
+									otherVehicles[vm.remoteID]->addShape(sh);
+								}
 
-					// error message
-					case 'E':
-						{
-							cerr << "Server error: " << msg.payload << endl;
-							break;
+							}
 						}
+						
+						/*for (std::vector<ShapeInit>::iterator it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
+							//for (int i = 0; i < vm.shapes.size(); i++)
+							// vm.shapes[i].type
+
+							//if (vm.shapes[1].type == 1) 
+							//vm.shapes[i].params.rect.xlen;
+							//vm.shapes[i].rotationvm.shapes[i].xyz[0-2]
+
+							//vm shapes = obtain vector shape in it
+
+							if (it->type == RECTANGULAR_PRISM) {
+							RecPrism* r = new RecPrism(it->params.rect.xlen, it->params.rect.ylen, it->params.rect.zlen);
+							r->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+							r->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+							otherVehicles[vm.remoteID]->addShape(r);
+
+							}
+							else if (it->type == TRIANGULAR_PRISM) {
+							TriPrism* t = new TriPrism(it->params.tri.alen, it->params.tri.blen, it->params.tri.angle, it->params.tri.depth);
+							t->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+							t->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+							otherVehicles[vm.remoteID]->addShape(t);
+
+							}
+							else if (it->type == TRAPEZOIDAL_PRISM) {
+							TrapPrism* trap = new TrapPrism(it->params.trap.alen, it->params.trap.blen, it->params.trap.height, it->params.trap.aoff, it->params.trap.depth);
+							trap->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+							trap->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+							otherVehicles[vm.remoteID]->addShape(trap);
+
+							}else if(it->type == CYLINDER){
+							Cylinder* c = new Cylinder(it->params.cyl.radius, it->params.cyl.depth, it->params.cyl.isRolling, it->params.cyl.isSteering);
+							c->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+							c->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+							otherVehicles[vm.remoteID]->addShape(c);
+
+							}
+
+							
+
+						}*/
+					}
+
+
+					break;
+				}
+
+				// vehicle states
+				case 'S':
+				{
+					std::vector<VehicleState> states = GetVehicleStates(msg.payload);
+					for (unsigned int i = 0; i < states.size(); i++) {
+						VehicleState vs = states[i];
+
+						std::map<int, Vehicle*>::iterator iter = otherVehicles.find(vs.remoteID);
+						if (iter != otherVehicles.end()) {
+							Vehicle * veh = iter->second;
+							remoteDriver(veh, vs.x, vs.z, vs.rotation, vs.speed, vs.steering);
+						}
+					}
+					break;
+				}
+
+				// goal state
+				case 'G':
+				{
+					goals = GetGoals(msg.payload);
+					break;
+				}
+
+				// obstacle state
+				case 'O':
+				{
+					std::vector<ObstacleState> obs = GetObstacles(msg.payload);
+					for (unsigned int i = 0; i < obs.size(); i++) {
+						Obstacle o(obs[i].x, obs[i].z, obs[i].radius);
+						ObstacleManager::get()->addObstacle(o);
+					}
+					break;
+				}
+
+				// disconnect list
+				case 'D':
+				{
+					std::vector<int> disconnectedIDs = GetVehicleDisconnects(msg.payload);
+					for (unsigned int i = 0; i < disconnectedIDs.size(); i++) {
+						int id = disconnectedIDs[i];
+						std::map<int, Vehicle*>::iterator iter = otherVehicles.find(id);
+						if (iter != otherVehicles.end()) {
+							delete iter->second;
+							otherVehicles.erase(iter);
+						}
+					}
+					break;
+				}
+
+				// error message
+				case 'E':
+				{
+					cerr << "Server error: " << msg.payload << endl;
+					break;
+				}
 
 				}
-			} 
+			}
 		}
 	}
 
@@ -471,7 +623,7 @@ void idle() {
 	if (vehicle != NULL) {
 		vehicle->update(speed, steering, elapsedTime);
 	}
-	for(std::map<int, Vehicle*>::iterator iter = otherVehicles.begin(); iter  != otherVehicles.end(); ++iter) {
+	for (std::map<int, Vehicle*>::iterator iter = otherVehicles.begin(); iter != otherVehicles.end(); ++iter) {
 		iter->second->update(elapsedTime);
 	}
 
@@ -495,7 +647,7 @@ void keydown(unsigned char key, int x, int y) {
 	switch (key) {
 	case 27: // ESC key
 		exit(0);
-		break;      
+		break;
 	case '0':
 		Camera::get()->jumpToOrigin();
 		break;
@@ -516,8 +668,8 @@ void special_keydown(int keycode, int x, int y) {
 
 };
 
-void special_keyup(int keycode, int x, int y) {  
-	KeyManager::get()->specialKeyReleased(keycode);  
+void special_keyup(int keycode, int x, int y) {
+	KeyManager::get()->specialKeyReleased(keycode);
 };
 
 void mouse(int button, int state, int x, int y) {

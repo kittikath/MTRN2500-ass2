@@ -1,4 +1,6 @@
-﻿#include <iostream>
+﻿// Code written by Group 30: Kate O'Sullivan (z5161671) and Kath-Lin Han (z5165314)
+
+#include <iostream>
 #include "TriPrism.h"
 
 #include <Windows.h>
@@ -9,74 +11,97 @@
 
 #define PI 3.14159265
 
-// NEED TO INCLUDE MATH.H FOR SIN AND COS STUFF???
-
 using namespace std;
 
 TriPrism::TriPrism(float a, float b, float d, float theta) {
-    al = a; // a length (length along base)
-    bl = b; // b length (length of side)
-    dl = d; // depth
-    t = theta; // included angle between a and b
+	// In the constructor the parameters given are converted into known variables
+    al = a; 
+    bl = b;
+    dl = d;
+    t = theta;
 }
 
-void TriPrism::draw() 
-{
-	t = t * (PI / 180);
+// Function that draws an arbitrary triangular prism
+void TriPrism::draw() {
+	t = t * (PI / 180); // Need to convery theta from degrees to radians for geometry
 
-    glPushMatrix();
-	positionInGL();
-	setColorInGL();
+	glPushMatrix(); // Ensures that the prism will be drawn from the origin
+	positionInGL(); // Moves the entirety of the shape to a new origin
+	setColorInGL(); // Changes the colour of the prism
 
-    //bottom face :)
+    // Bottom Face
     glBegin(GL_QUADS);
-		//glColor3d(0, 1, 0);
         glVertex3f(-al / 2, 0, dl / 2);
         glVertex3f(al/2, 0, dl/2);
         glVertex3f(al/2, 0, -dl/2);
-        glVertex3f(-al/2, 0, -dl/2);
+		glVertex3f(-al/2, 0, -dl/2);
     glEnd();
 
-    // front face
-    
-    glBegin(GL_QUADS);
-		//glColor3d(0, 1, 0);
+    // Front Face
+    glBegin(GL_TRIANGLES);
         glVertex3f(-al / 2, 0, dl / 2);
         glVertex3f((bl*cos(t))-(al/2), bl*sin(t),  dl / 2);
-        glVertex3f(al / 2, 0, dl / 2);
 		glVertex3f(al / 2, 0, dl / 2);
     glEnd();
 
-        // back face
-    
-    glBegin(GL_QUADS);
-		//glColor3d(0, 1, 0);
+	// Back Face
+    glBegin(GL_TRIANGLES);
         glVertex3f(-al / 2, 0, -dl / 2);
         glVertex3f((bl*cos(t))-(al/2), bl*sin(t),  -dl / 2);
-        glVertex3f(al / 2, 0, -dl / 2);
-		glVertex3f(al / 2, 0, -dl / 2);
+        glVertex3f(al / 2, 0, -dl / 2);;
     glEnd();
 
-         // left side face
-    
+	// Left Side Face
     glBegin(GL_QUADS);
-		//glColor3d(1, 1, 0);
         glVertex3f(-al / 2, 0, dl / 2);
         glVertex3f(-al / 2, 0, -dl / 2);
         glVertex3f((bl*cos(t))-(al/2), bl*sin(t),  -dl / 2);
         glVertex3f((bl*cos(t))-(al/2), bl*sin(t),  dl / 2);
     glEnd();
 
-         // right side face
-    
+	// Right Side Face
     glBegin(GL_QUADS);
-		//glColor3d(0, 1, 1);
         glVertex3f(al / 2, 0, dl / 2);
         glVertex3f(al / 2, 0, -dl / 2);
         glVertex3f((bl*cos(t))-(al/2), bl*sin(t),  -dl / 2);
         glVertex3f((bl*cos(t))-(al/2), bl*sin(t),  dl / 2);
     glEnd();
 
+	// Resets the coordinate system so as to not affect other external functions
     glPopMatrix();
+}
 
+// The Get functions are used to retrieve parameters locally initialised
+double TriPrism::GetX() {
+	return al;
+}
+
+double TriPrism::GetY() {
+	return bl;
+}
+
+double TriPrism::GetZ() {
+	return dl;
+}
+
+double TriPrism::GetAngle() {
+	return t;
+}
+
+// The Set functions are used to set parameters
+// Primarily used when sending vehicle and receiving other vehicles from server
+void TriPrism::SetX(double xx) {
+	al = xx;
+}
+
+void TriPrism::SetY(double yy) {
+	bl = yy;
+}
+
+void TriPrism::SetZ(double zz) {
+	dl = zz;
+}
+
+void TriPrism::SetAngle(double qq) {
+	t = qq;
 }

@@ -1,7 +1,0 @@
-﻿  main.cpp
-g:\mtrn2500-ass2-master\mtrn2500-ass2\assssss2\main.cpp(156): warning C4018: '<': signed/unsigned mismatch
-g:\mtrn2500-ass2-master\mtrn2500-ass2\assssss2\main.cpp(336): warning C4018: '<': signed/unsigned mismatch
-g:\mtrn2500-ass2-master\mtrn2500-ass2\assssss2\main.cpp(426): warning C4018: '<': signed/unsigned mismatch
-g:\mtrn2500-ass2-master\mtrn2500-ass2\assssss2\main.cpp(427): warning C4018: '<': signed/unsigned mismatch
-g:\mtrn2500-ass2-master\mtrn2500-ass2\assssss2\main.cpp(335): warning C4101: 'i': unreferenced local variable
-  Assssss2.vcxproj -> G:\MTRN2500-ass2-master\MTRN2500-ass2\Debug\Assssss2.exe

@@ -1,5 +1,3 @@
-// Code written by Group 30: Kate O'Sullivan (z5161671) and Kath-Lin Han (z5165314)
-
 
 #include <iostream>
 #include <cstdlib>
@@ -49,9 +47,7 @@
 #include "TriPrism.h"
 #include "cylinder.h"
 #include "MyVehicle.h"
-
-//include header file to process input of XBox controller
-#include "XBoxController.h"
+//#include "Wheel.h"
 
 void display();
 void reshape(int width, int height);
@@ -120,7 +116,7 @@ int main(int argc, char ** argv) {
 	//   with the name of the class you want to show as the current 
 	//   custom vehicle.
 	// -------------------------------------------------------------------------
-
+	// calling MyVehicle function to print the car at 0,0,0
 	vehicle = new MyVehicle(0,0,0);
 
 
@@ -146,6 +142,7 @@ int main(int argc, char ** argv) {
 	return 0;
 }
 
+//drawing reference points within the virtual world
 void drawGoals()
 {
 	for (int i = 0; i < goals.size(); ++i) {
@@ -159,6 +156,7 @@ void drawGoals()
 		// make first goal purple
 		if (i == 0)
 			glColor3f(1, .3, 1);
+		// white
 		else
 			glColor3f(1, 1, 1);
 
@@ -252,58 +250,47 @@ double getTime()
 }
 
 void idle() {
-	//toggle pursuit camera when left shoulder is pressed
-	if(controller.PressedLeftShoulder() == 1){
-		Camera::get()->togglePursuitMode;
-	}
-	//set camera to origin if right shoulder is pressed
-	if(conroller.PressedRightShoulder() == 1){
-		Camera::get()->jumpToOrigin;
-	}
 
-
-
-
-	if (KeyManager::get()->isAsciiKeyPressed('a') || (controller.PressedX() == 1)){
+	if (KeyManager::get()->isAsciiKeyPressed('a')) {
 		Camera::get()->strafeLeft();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('c') || (controller.PressedBack() == 1)){
+	if (KeyManager::get()->isAsciiKeyPressed('c')) {
 		Camera::get()->strafeDown();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('d') || (controller.PressedB() == 1)) {
+	if (KeyManager::get()->isAsciiKeyPressed('d')) {
 		Camera::get()->strafeRight();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('s') || (controller.PressedA() == 1)) {
+	if (KeyManager::get()->isAsciiKeyPressed('s')) {
 		Camera::get()->moveBackward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('w') || (controller.PressedY() == 1)) {
+	if (KeyManager::get()->isAsciiKeyPressed('w')) {
 		Camera::get()->moveForward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed(' ') || (controller.PressedStart() == 1)) {
+	if (KeyManager::get()->isAsciiKeyPressed(' ')) {
 		Camera::get()->strafeUp();
 	}
 
 	speed = 0;
 	steering = 0;
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT) || (controller.PressedLeftDpad() == 1)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
 		steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT) || (controller.PressedRightDpad() == 1)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT)) {
 		steering = Vehicle::MAX_RIGHT_STEERING_DEGS * -1;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP) || (controller.PressedUpDpad() == 1)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP)) {
 		speed = Vehicle::MAX_FORWARD_SPEED_MPS;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN) || (controller.PressedDownDpad() == 1)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN)) {
 		speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
 	}
 
@@ -332,7 +319,6 @@ void idle() {
 					VehicleModel vm;
 					vm.remoteID = 0;
 
-					// student code goes here
 					std::vector<Shape*>ListShape = dynamic_cast<MyVehicle*>(vehicle)->getShapes();
 					//iterate through vector ListShape created in constructor
 					for (int i = 0; i < ListShape.size(); i++) {
@@ -347,38 +333,35 @@ void idle() {
 					vehicle.rgb[1] = ListShape[i]->getGreen();
 					vehicle.rgb[2] = ListShape[i]->getBlue();
 
-					//access parameters of each shape 
-					//need to dynamic cast to convert shape pointers to pointers made in each class
-					//compare parameters in message to parameters made in each function for shapes
-					RecPrism* rect = dynamic_cast<RecPrism*>(ListShape[i]);
-					if (dynamic_cast <RecPrism *> (ListShape[i]) != nullptr) {
+
+					RecPrism *p1 = dynamic_cast
+					if (dynamic_cast <RecPrism *> (ListShape[i]) != nullptr){
 						vehicle.type = RECTANGULAR_PRISM;
 						vehicle.params.rect.xlen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetX();
-						vehicle.params.rect.ylen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetY();
-						vehicle.params.rect.zlen = (float)dynamic_cast<RecPrism*>(ListShape[i])->GetZ();
-					}
-
+						vehicle.params.rect.ylen = (float)dynamic_cast<RecPrism*>ListShape[i]->GetY();
+						vehicle.params.rect.zlen = (float)dynamic_cast<RecPrism*>ListShape[i]->GetZ();
 					}
 					else if (dynamic_cast <TriPrism *> (ListShape[i]) != nullptr) {
 						vehicle.type = TRIANGULAR_PRISM;
-						vehicle.params.tri.alen = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetX();
-						vehicle.params.tri.blen = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetY();
-						vehicle.params.tri.depth = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetZ();
-						vehicle.params.tri.angle = (float)dynamic_cast<TriPrism*>(ListShape[i])->GetAngle();
+						vehicle.params.tri.alen = (float)dynamic_cast<TriPrism*>ListShape[i]->GetX();
+						vehicle.params.tri.blen = (float)dynamic_cast<TriPrism*>ListShape[i]->GetY();
+						vehicle.params.tri.depth = (float)dynamic_cast<TriPrism*>ListShape[i]->GetZ();
+						vehicle.params.tri.angle = (float)dynamic_cast<TriPrism*>ListShape[i]->GetAngle();
+					}
 					else if (dynamic_cast <TrapPrism *> (ListShape[i]) != nullptr) {
 						vehicle.type = TRAPEZOIDAL_PRISM;
-						vehicle.params.trap.alen = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetA();
-						vehicle.params.trap.blen = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetB();
-						vehicle.params.trap.depth = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetDepth();
-						vehicle.params.trap.height = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetHeight();
-						vehicle.params.trap.aoff = (float)dynamic_cast<TrapPrism*>(ListShape[i])->GetOffset();
+						vehicle.params.trap.alen = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetA();
+						vehicle.params.trap.blen = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetB();
+						vehicle.params.trap.depth = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetDepth();
+						vehicle.params.trap.height = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetHeight();
+						vehicle.params.trap.aoff = (float)dynamic_cast<TrapPrism*>ListShape[i]->GetOffset();
 					}
-					else if (dynamic_cast <Cylinder *> (ListShape[i]) != nullptr) {
+					else(dynamic_cast <Cylinder *> (ListShape[i]) != nullptr) {
 						vehicle.type = CYLINDER;
-						vehicle.params.cyl.radius = (float)dynamic_cast<Cylinder*>(ListShape[i])->GetR();
-						vehicle.params.cyl.depth = (float)dynamic_cast<Cylinder*>(ListShape[i])->GetL();
-						vehicle.params.cyl.isRolling = (float)dynamic_cast<Cylinder*>(ListShape[i])->getisrolling();
-						vehicle.params.cyl.isSteering = (float)dynamic_cast<Cylinder*>(ListShape[i])->getissteering();
+						vehicle.params.cyl.radius = (float)dynamic_cast<Cylinder*>ListShape[i]->GetR();
+						vehicle.params.cyl.depth = (float)dynamic_cast<Cylinder*>ListShape[i]->GetL();
+						vehicle.params.cyl.isRolling = (float)dynamic_cast<Cylinder*>ListShape[i]->GetisRolling();
+						vehicle.params.cyl.isSteering = (float)dynamic_cast<Cylinder*>ListShape[i]->GetisSteering();
 					}
 					vm.shapes.push_back(vehicle);
 					}
@@ -405,29 +388,35 @@ void idle() {
 			for (unsigned int i = 0; i < msgs.size(); i++) {
 
 				RemoteMessage msg = msgs[i];
+				//cout << msg.payload << endl;
 
 				switch (msg.type) {
-				// new models
+					// new models
 				case 'M':
 				{
 					std::vector<VehicleModel> models = GetVehicleModels(msg.payload);
 					for (unsigned int j = 0; j < models.size(); j++) {
 						VehicleModel vm = models[j];
 
-						//Uncomment the line below to create remote vehicles
+						// uncomment the line below to create remote vehicles
 						otherVehicles[vm.remoteID] = new MyVehicle();
-					    //Creater pointer in ShapeInit to iterate through shape info
+						//std::vector<ShapeInit>::iterator it;
 						ShapeInit it;
-						//Creater counters
+						
+						//
+						// more student code goes here
+						//
+						
 						int i;
-						int k = 0;
+						
 						Shape * sh = NULL;
 						const double time = 0.042;
+						//sh = new Wheel (length, radius, isRolling, isSteering);
 						vm.shapes.push_back(it);
-						//create loop to search for every object on server
-						//access every function to print each feature
+						int k = 0;
 						for (k = 0; k < models.size(); k++) {
 							for (i = 0; i < vm.shapes.size(); i++) {
+
 								if (vm.shapes[i].type == CYLINDER) {
 									sh = new Cylinder(
 										vm.shapes[i].params.cyl.radius,
@@ -513,8 +502,51 @@ void idle() {
 
 							}
 						}
+						
+						/*for (std::vector<ShapeInit>::iterator it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
+							//for (int i = 0; i < vm.shapes.size(); i++)
+							// vm.shapes[i].type
 
+							//if (vm.shapes[1].type == 1) 
+							//vm.shapes[i].params.rect.xlen;
+							//vm.shapes[i].rotationvm.shapes[i].xyz[0-2]
+
+							//vm shapes = obtain vector shape in it
+
+							if (it->type == RECTANGULAR_PRISM) {
+							RecPrism* r = new RecPrism(it->params.rect.xlen, it->params.rect.ylen, it->params.rect.zlen);
+							r->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+							r->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+							otherVehicles[vm.remoteID]->addShape(r);
+
+							}
+							else if (it->type == TRIANGULAR_PRISM) {
+							TriPrism* t = new TriPrism(it->params.tri.alen, it->params.tri.blen, it->params.tri.angle, it->params.tri.depth);
+							t->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+							t->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+							otherVehicles[vm.remoteID]->addShape(t);
+
+							}
+							else if (it->type == TRAPEZOIDAL_PRISM) {
+							TrapPrism* trap = new TrapPrism(it->params.trap.alen, it->params.trap.blen, it->params.trap.height, it->params.trap.aoff, it->params.trap.depth);
+							trap->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+							trap->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+							otherVehicles[vm.remoteID]->addShape(trap);
+
+							}else if(it->type == CYLINDER){
+							Cylinder* c = new Cylinder(it->params.cyl.radius, it->params.cyl.depth, it->params.cyl.isRolling, it->params.cyl.isSteering);
+							c->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+							c->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+							otherVehicles[vm.remoteID]->addShape(c);
+
+							}
+
+							
+
+						}*/
 					}
+
+
 					break;
 				}
 

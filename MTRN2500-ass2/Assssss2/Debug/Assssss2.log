@@ -1,6 +1,108 @@
-﻿  main.cpp
-e:\mtrn2500-ass2\assssss2\main.cpp(149): warning C4018: '<': signed/unsigned mismatch
-e:\mtrn2500-ass2\assssss2\main.cpp(325): warning C4018: '<': signed/unsigned mismatch
-e:\mtrn2500-ass2\assssss2\main.cpp(418): warning C4018: '<': signed/unsigned mismatch
-e:\mtrn2500-ass2\assssss2\main.cpp(419): warning C4018: '<': signed/unsigned mismatch
-  Assssss2.vcxproj -> E:\MTRN2500-ass2\Debug\Assssss2.exe
+﻿  Vehicle.cpp
+g:\mtrn2500-ass2-master\assssss2\vehicle.cpp(11): warning C4018: '<': signed/unsigned mismatch
+  VectorMaths.cpp
+g:\mtrn2500-ass2-master\assssss2\vectormaths.cpp(123): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  TriPrism.cpp
+  TrapPrism.cpp
+  Shape.cpp
+  RemoteDataManager.cpp
+  RecPrism.cpp
+  Quaternion.cpp
+  ObstacleManager.cpp
+  Obstacle.cpp
+  MyVehicle.cpp
+g:\mtrn2500-ass2-master\assssss2\myvehicle.cpp(38): error C2661: 'Cylinder::Cylinder': no overloaded function takes 3 arguments
+g:\mtrn2500-ass2-master\assssss2\myvehicle.cpp(43): error C2661: 'Cylinder::Cylinder': no overloaded function takes 3 arguments
+g:\mtrn2500-ass2-master\assssss2\myvehicle.cpp(48): error C2661: 'Cylinder::Cylinder': no overloaded function takes 3 arguments
+g:\mtrn2500-ass2-master\assssss2\myvehicle.cpp(53): error C2661: 'Cylinder::Cylinder': no overloaded function takes 3 arguments
+  Messages.cpp
+g:\mtrn2500-ass2-master\assssss2\messages.cpp(239): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+g:\mtrn2500-ass2-master\assssss2\main.cpp(148): warning C4018: '<': signed/unsigned mismatch
+g:\mtrn2500-ass2-master\assssss2\main.cpp(322): error C2039: 'getShapes': is not a member of 'MyVehicle'
+  g:\mtrn2500-ass2-master\assssss2\myvehicle.h(17): note: see declaration of 'MyVehicle'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(324): warning C4018: '<': signed/unsigned mismatch
+g:\mtrn2500-ass2-master\assssss2\main.cpp(338): error C2760: syntax error: unexpected token 'if', expected '<'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(338): error C2059: syntax error: 'if'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(338): error C2143: syntax error: missing ';' before '{'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(340): error C2039: 'GetX': is not a member of 'RecPrism'
+  g:\mtrn2500-ass2-master\assssss2\recprism.h(7): note: see declaration of 'RecPrism'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(341): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(341): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(342): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(342): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(344): error C2181: illegal else without matching if
+g:\mtrn2500-ass2-master\assssss2\main.cpp(346): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(346): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(347): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(347): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(348): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(348): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(349): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(349): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(353): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(353): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(354): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(354): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(355): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(355): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(356): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(356): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(357): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(357): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(360): error C2059: syntax error: ';'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(361): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(361): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(362): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(362): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(363): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(363): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(364): error C2061: syntax error: identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(364): error C2146: syntax error: missing '(' before identifier 'ListShape'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(366): error C2664: 'void std::vector<ShapeInit,std::allocator<_Ty>>::push_back(_Ty &&)': cannot convert argument 1 from 'Vehicle *' to 'const ShapeInit &'
+          with
+          [
+              _Ty=ShapeInit
+          ]
+  g:\mtrn2500-ass2-master\assssss2\main.cpp(366): note: Reason: cannot convert from 'Vehicle *' to 'const ShapeInit'
+  g:\mtrn2500-ass2-master\assssss2\main.cpp(366): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+g:\mtrn2500-ass2-master\assssss2\main.cpp(368): error C2065: 'vm': undeclared identifier
+g:\mtrn2500-ass2-master\assssss2\main.cpp(417): warning C4018: '<': signed/unsigned mismatch
+g:\mtrn2500-ass2-master\assssss2\main.cpp(418): warning C4018: '<': signed/unsigned mismatch
+g:\mtrn2500-ass2-master\assssss2\main.cpp(620): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+g:\mtrn2500-ass2-master\assssss2\main.cpp(620): error C2371: 'previousTime': redefinition; different basic types
+  g:\mtrn2500-ass2-master\assssss2\main.cpp(617): note: see declaration of 'previousTime'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(623): error C2059: syntax error: 'if'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(623): error C2143: syntax error: missing ';' before '{'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(623): error C2447: '{': missing function header (old-style formal list?)
+g:\mtrn2500-ass2-master\assssss2\main.cpp(626): error C2059: syntax error: 'for'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(626): error C2143: syntax error: missing ')' before ';'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(626): error C2143: syntax error: missing ';' before '!='
+g:\mtrn2500-ass2-master\assssss2\main.cpp(626): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+g:\mtrn2500-ass2-master\assssss2\main.cpp(626): error C2059: syntax error: '++'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(626): error C2059: syntax error: ')'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(626): error C2143: syntax error: missing ';' before '{'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(626): error C2447: '{': missing function header (old-style formal list?)
+g:\mtrn2500-ass2-master\assssss2\main.cpp(630): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+g:\mtrn2500-ass2-master\assssss2\main.cpp(630): error C2556: 'int display(void)': overloaded function differs only by return type from 'void display(void)'
+  g:\mtrn2500-ass2-master\assssss2\main.cpp(168): note: see declaration of 'display'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(630): error C2371: 'display': redefinition; different basic types
+  g:\mtrn2500-ass2-master\assssss2\main.cpp(168): note: see declaration of 'display'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(633): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+g:\mtrn2500-ass2-master\assssss2\main.cpp(633): error C2365: 'Sleep': redefinition; previous definition was 'function'
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\synchapi.h(819): note: see declaration of 'Sleep'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(637): error C2059: syntax error: '}'
+g:\mtrn2500-ass2-master\assssss2\main.cpp(637): error C2143: syntax error: missing ';' before '}'
+  KeyManager.cpp
+  HUD.cpp
+g:\mtrn2500-ass2-master\assssss2\hud.cpp(40): warning C4018: '<': signed/unsigned mismatch
+  Ground.cpp
+g:\mtrn2500-ass2-master\assssss2\ground.cpp(21): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+g:\mtrn2500-ass2-master\assssss2\ground.cpp(22): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+g:\mtrn2500-ass2-master\assssss2\ground.cpp(24): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+g:\mtrn2500-ass2-master\assssss2\ground.cpp(25): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+  Frustum.cpp
+  cylinder.cpp
+  Camera.cpp
+g:\mtrn2500-ass2-master\assssss2\camera.cpp(443): warning C4101: 'new_dest_dir': unreferenced local variable
+  Generating Code...

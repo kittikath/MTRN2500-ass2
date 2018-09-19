@@ -16,12 +16,6 @@ public:
 	double getX();
 	double getY();
 	double getZ();
-//	double getAngle();
-//	double getHeight();
-//	double getDepth();
-//	double getOffset();
-//	double getisrolling();
-//	double getissteering();
 	double getRotation();
 
 	void setX(double x_);

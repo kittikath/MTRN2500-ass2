@@ -25,8 +25,7 @@ class MyVehicle : public Vehicle {
 		MyVehicle(float x_, float y_, float z_);
 		~MyVehicle() = default;
 		void draw();
-		std::vector<Shape *>getShapes();
-		
+	
 };
 
 #endif MYVEHICLE_H
